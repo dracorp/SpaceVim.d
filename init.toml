@@ -71,7 +71,7 @@
     enable_scrollbar = true
     enable_sidebar = true
     enable_cursorword = true
-    indentline_char = '|'
+    enable_indentline = false
 
 [[layers]]
     name = 'shell'
@@ -90,6 +90,9 @@
     name = "github"
 
 [[layers]]
+    name = "lang#toml"
+
+[[layers]]
     name = "lang#dockerfile"
 
 [[layers]]
@@ -106,7 +109,6 @@
 
 [[layers]]
     name = "lang#perl"
-    enable = false
 
 [[layers]]
     name = "lang#sh"
@@ -119,8 +121,8 @@
 
 [[custom_plugins]]
     repo = "https://github.com/lilydjwg/colorizer"
-[[custom_plugins]]
-    repo = "https://github.com/scrooloose/nerdcommenter"
+# [[custom_plugins]]
+#     repo = "https://github.com/scrooloose/nerdcommenter"
 [[custom_plugins]]
     repo = "https://github.com/editorconfig/editorconfig-vim"
 [[custom_plugins]]
@@ -151,8 +153,8 @@
     repo = 'https://github.com/vim-scripts/bats.vim'
 [[custom_plugins]]
     repo = 'https://github.com/vim-scripts/taglist.vim'
-[[custom_plugins]]
-    repo = 'https://github.com/Yggdroot/indentLine'
+# [[custom_plugins]]
+#     repo = 'https://github.com/Yggdroot/indentLine'
 [[custom_plugins]]
     repo = 'https://github.com/vim-scripts/betterga'
 [[custom_plugins]]
