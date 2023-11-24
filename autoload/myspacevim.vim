@@ -1,10 +1,4 @@
 function! myspacevim#before() abort
-    set wrap
-    let g:python3_host_prog = '/opt/homebrew/bin/python3'
-    " let g:python3_host_prog = '/Users/u537501/.pyenv/versions/3.11.6/bin/python'
-endfunction
-
-function! myspacevim#after() abort
     let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
     let g:MSWIN64 = has('win64')
     let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
@@ -18,6 +12,14 @@ function! myspacevim#after() abort
     " pip3 install neovim --upgrade
     let g:OS      = substitute(system('uname'), "\n", "", "")
 
+    set wrap
+    if g:MACOS
+        let g:python3_host_prog = '/opt/homebrew/bin/python3'
+        " let g:python3_host_prog = '/Users/u537501/.pyenv/versions/3.11.6/bin/python'
+    endif
+endfunction
+
+function! myspacevim#after() abort
     " vimwiki
     let g:vimwiki_list = [
                 \ {'path': '~/Documents/vimwiki', 'ext': '.wiki'},

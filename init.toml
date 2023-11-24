@@ -29,7 +29,7 @@
     enable_statusline_mode = true
     filemanager = "nerdtree"
     bootstrap_before = "myspacevim#before"
-    bootstrap_before = "myspacevim#after"
+    bootstrap_after = "myspacevim#after"
     # ~/.SpaceVim.d/autoload/myspacevim.vim
     # disable 'q' to close current window
     # windows_smartclose = ''
