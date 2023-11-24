@@ -1,0 +1,8 @@
+flake8
+yapf
+autoflake
+isort
+pylint
+coverage
+python-lsp-server
+pynvim
