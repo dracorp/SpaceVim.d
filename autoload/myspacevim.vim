@@ -12,7 +12,6 @@ function! myspacevim#before() abort
     " pip3 install neovim --upgrade
     let g:OS      = substitute(system('uname'), "\n", "", "")
 
-    set wrap
     if g:MACOS
         let g:python3_host_prog = '/opt/homebrew/bin/python3'
         " let g:python3_host_prog = '/Users/u537501/.pyenv/versions/3.11.6/bin/python'
@@ -25,7 +24,8 @@ function! myspacevim#before() abort
     set smartindent                                 " smart autoindenting when starting a new line
     set copyindent                                  " copy the previous indentation on autoindenting
 
-
+    " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
+    let g:polyglot_disabled = ['csv', 'jenkins', 'yaml']
 endfunction
 
 function! myspacevim#after() abort
@@ -123,4 +123,8 @@ function! myspacevim#after() abort
     let Tlist_Display_Tag_Scope=1
     " show TagList window on the left
     let Tlist_Use_Left_Window=1
+
+    " Vista
+    noremap  <silent> <S-F12>       :Vista!!<CR>
+    inoremap <silent> <S-F12>  <C-C>:Vista!!<CR>
 endfunction

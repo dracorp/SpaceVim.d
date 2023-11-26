@@ -19,7 +19,7 @@
   # Disable statusline separator, if you want to use other value, please
   # install nerd fonts
   statusline_separator = "arrow"
-  statusline_iseparator = "arror"
+  statusline_iseparator = "arrow"
   buffer_index_type = 4
   # Display file type icon on the tabline, If you do not have nerd fonts
   # installed, please change the value to false
@@ -81,7 +81,7 @@
   filetree_show_hidden = true
   enable_filetree_filetypeicon = true
   enable_filetree_gitstatus = true
-  enable_smooth_scrolling = true
+  enable_smooth_scrolling = false
 [[layers]]
   # enabled by default
   name = "core#statusline"
@@ -116,8 +116,8 @@
   name = "lang#html"
 [[layers]]
   name = "lang#json"
-[[layers]]
-  name = "lang#markdown"
+# [[layers]]
+#   name = "lang#markdown"
 [[layers]]
   name = "lang#python"
 [[layers]]
@@ -181,3 +181,29 @@
   repo = "https://github.com/dracorp/vim-pkgbuild"
 [[custom_plugins]]
   repo = 'https://github.com/liuchengxu/vista.vim'
+[[custom_plugins]]
+  repo = 'https://github.com/scrooloose/syntastic'
+[[custom_plugins]]
+  repo = 'https://github.com/airblade/vim-gitgutter'
+[[custom_plugins]]
+  repo = 'https://github.com/tpope/vim-fugitive'
+[[custom_plugins]]
+  repo = 'https://github.com/junegunn/gv.vim'
+[[custom_plugins]]
+  repo = 'https://github.com/sheerun/vim-polyglot'
+[[custom_plugins]]
+  repo = 'https://github.com/osyo-manga/vim-over'
+# [[custom_plugins]]
+#   repo = 'https://github.com/xolox/vim-misc'
+# [[custom_plugins]]
+#   repo = 'https://github.com/xolox/vim-easytags'
+[[custom_plugins]]
+  repo = 'https://github.com/vim-scripts/DrawIt'
+  on_cmd = ["DrawIt"]
+[[custom_plugins]]
+  repo = 'https://github.com/honza/vim-snippets'
+[[custom_plugins]]
+  repo = 'https://github.com/mzlogin/vim-markdown-toc'
+[[custom_plugins]]
+  repo = 'https://github.com/ryanoasis/vim-devicons'
+
