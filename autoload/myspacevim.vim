@@ -17,6 +17,15 @@ function! myspacevim#before() abort
         let g:python3_host_prog = '/opt/homebrew/bin/python3'
         " let g:python3_host_prog = '/Users/u537501/.pyenv/versions/3.11.6/bin/python'
     endif
+    set matchpairs+=<:> " Add HTML brackets to pair matching
+    set ignorecase               " ignore case when searching
+    set smartcase                " ignore case if search pattern is all lowercase, case-sensitive otherwise
+    " indention & tabs
+    set autoindent                                  " always set autoindenting on
+    set smartindent                                 " smart autoindenting when starting a new line
+    set copyindent                                  " copy the previous indentation on autoindenting
+
+
 endfunction
 
 function! myspacevim#after() abort
@@ -61,25 +70,57 @@ function! myspacevim#after() abort
     nnoremap <F5> :MundoToggle<cr>
 
     " nerd-commenter
-          " Add spaces after comment delimiters by default
-      let g:NERDSpaceDelims = 1
-      " Use compact syntax for prettified multi-line comments
-      let g:NERDCompactSexyComs = 1
-      " Align line-wise comment delimiters flush left instead of following code indentation
-      let g:NERDDefaultAlign = 'left'
-      " Set a language to use its alternate delimiters by default
-      let g:NERDAltDelims_java = 1
-      " Allow commenting and inverting empty lines (useful when commenting a region)
-      let g:NERDCommentEmptyLines = 1
-      " Enable trimming of trailing whitespace when uncommenting
-      let g:NERDTrimTrailingWhitespace = 1
-      " Enable NERDCommenterToggle to check all selected lines is commented or not
-      let g:NERDToggleCheckAllLines = 1
-      let g:NERDCustomDelimiters = {
-          \ 'brewfile': { 'left': '#','right': '' }
-      \ }
+    " Add spaces after comment delimiters by default
+    let g:NERDSpaceDelims = 1
+    " Use compact syntax for prettified multi-line comments
+    let g:NERDCompactSexyComs = 1
+    " Align line-wise comment delimiters flush left instead of following code indentation
+    let g:NERDDefaultAlign = 'left'
+    " Set a language to use its alternate delimiters by default
+    let g:NERDAltDelims_java = 1
+    " Allow commenting and inverting empty lines (useful when commenting a region)
+    let g:NERDCommentEmptyLines = 1
+    " Enable trimming of trailing whitespace when uncommenting
+    let g:NERDTrimTrailingWhitespace = 1
+    " Enable NERDCommenterToggle to check all selected lines is commented or not
+    let g:NERDToggleCheckAllLines = 1
+    let g:NERDCustomDelimiters = {
+      \ 'brewfile': { 'left': '#','right': '' }
+    \ }
+    " nerdtree
+    let NERDTreeShowHidden=1
 
-      " vim-commentery
-      autocmd FileType apache setlocal commentstring=#\ %s
-      autocmd FileType dosini setlocal commentstring=#\ %s
+    " vim-commentery
+    autocmd FileType apache setlocal commentstring=#\ %s
+    autocmd FileType dosini setlocal commentstring=#\ %s
+
+    " perl-support.vim
+    let g:Perl_PerlcriticSeverity  = 1
+    let g:Perl_PerlcriticVerbosity = 9
+    let g:Perl_PodcheckerWarnings  = 'yes'
+
+    " taglist.vim
+    noremap <silent> <S-F11>       :TlistToggle<CR>
+    inoremap <silent> <S-F11>  <C-C>:TlistToggle<CR>
+    let tlist_perl_settings = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
+    " fix your ~/.ctags https://gist.github.com/dracorp/5d7308b894c1c9f301bc9cb8d2f262db
+    let tlist_sh_settings   = 'sh;f:functions;v:variables;c:constants'
+    let Tlist_Enable_Fold_Column=0
+    " quit Vim when the TagList window is the last open window
+    let Tlist_Exit_OnlyWindow=1         " quit when TagList is the last open window
+    let Tlist_GainFocus_On_ToggleOpen=1 " put focus on the TagList window when it opens
+    " let Tlist_Process_File_Always=1     " process files in the background, even when the TagList window isn't open
+    " let Tlist_Show_One_File=1           " only show tags from the current buffer, not all open buffers
+    let Tlist_WinWidth=40               " set the width
+    let Tlist_Inc_Winwidth=1            " increase window by 1 when growing
+    " shorten the time it takes to highlight the current tag (default is 4 secs)
+    " note that this setting influences Vim's behaviour when saving swap files,
+    " but we have already turned off swap files (earlier)
+    " set updatetime=1000
+    " show function/method prototypes in the list
+    let Tlist_Display_Prototype=1
+    " don't show scope info
+    let Tlist_Display_Tag_Scope=1
+    " show TagList window on the left
+    let Tlist_Use_Left_Window=1
 endfunction
