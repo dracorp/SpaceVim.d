@@ -9,17 +9,14 @@ repos:
     rev: v4.5.0
     hooks:
     -   id: check-added-large-files
-    -   id: check-case-conflict
-    -   id: check-json
-    -   id: check-yaml
-    -   id: check-xml
     -   id: detect-private-key
     -   id: end-of-file-fixer
     -   id: fix-byte-order-marker
-    -   id: fix-encoding-pragma
     -   id: mixed-line-ending
         args: [--fix=no]
-    -   id: pretty-format-json
-    -   id: requirements-txt-fixer
     -   id: trailing-whitespace
     -   id: check-toml
+-   repo: https://github.com/Vimjas/vint
+    rev: v0.4a3
+    hooks:
+    - id: vint
