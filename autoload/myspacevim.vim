@@ -1,3 +1,4 @@
+scriptencoding utf-8
 function! myspacevim#before() abort
     let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
     let g:MSWIN64 = has('win64')
@@ -10,19 +11,44 @@ function! myspacevim#before() abort
     " brew install python3
     " pip2 install neovim --upgrade
     " pip3 install neovim --upgrade
-    let g:OS      = substitute(system('uname'), "\n", "", "")
+    let g:OS      = substitute(system('uname'), '\n', '', '')
 
     if g:MACOS
         let g:python3_host_prog = '/opt/homebrew/bin/python3'
         " let g:python3_host_prog = '/Users/u537501/.pyenv/versions/3.11.6/bin/python'
     endif
+
     set matchpairs+=<:> " Add HTML brackets to pair matching
     set ignorecase               " ignore case when searching
-    set smartcase                " ignore case if search pattern is all lowercase, case-sensitive otherwise
-    " indention & tabs
-    set autoindent                                  " always set autoindenting on
-    set smartindent                                 " smart autoindenting when starting a new line
-    set copyindent                                  " copy the previous indentation on autoindenting
+    " set smartcase                " ignore case if search pattern is all lowercase, case-sensitive otherwise
+    " set autoindent                                  " always set autoindenting on
+    " set smartindent                                 " smart autoindenting when starting a new line
+    " set copyindent                                  " copy the previous indentation on autoindenting
+    set nojoinspaces                                " do not insert 2 spaces after .?! when join lines <J>
+    set formatoptions+=1                            " long lines are not broken in insert mode
+    set formatoptions-=t                            " noautowrap text using textwidth
+    set formatoptions-=c                            " autowrap comments using textwidth
+    set formatoptions+=o                            " automatically insert the current comment leader after hitting 'o' in Normal mode
+    set formatoptions+=r                            " as above but after <Enter> in Insert mode
+    "set formatoptions+=m                            " Also break at a multi-byte character above 255
+    "set formatoptions+=B                            " When joining lines, don't insert a space between two multi-byte characters
+    set complete+=k                                 " scan the files given with the 'dictionary' option
+    set splitbelow                                  " command :sp put a new window below the active
+    set splitright                                  " command :vs put a new windows on right side of active
+    set tildeop                                     " Tylde(~) behaves like operator
+    set iskeyword-=$
+    set iskeyword+=-
+    set isfname+={,}                                " where the file name starts and ends
+    set isfname-==
+
+    if has('folding')
+        set foldenable                              " enable folding
+        set foldcolumn=0                            " add a fold column
+        set foldmethod=marker                       " detect triple-{ style fold markers                                                                                          ▲
+        " set foldmarker={{{,}}}                                                                                                                                                    █
+        set foldlevelstart=1                      " start out with everything unfolded                                                                                             ▼
+    endif
+    set wildmode=list:longest,list:full  " show a list when pressing tab and complete
 
     " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
     let g:polyglot_disabled = ['csv', 'jenkins', 'yaml']
@@ -43,12 +69,12 @@ function! myspacevim#after() abort
     nnoremap <silent> <leader>uu :call vimwiki#base#linkify()<cr>
     nmap <Leader>wq <Plug>VimwikiVSplitLink
 
-    function! VimwikiFindIncompleteTasks()
+    function! VimwikiFindIncompleteTasks() abort
         lvimgrep /- \[ \]/ %:p
         lopen
     endfunction
 
-    function! VimwikiFindAllIncompleteTasks()
+    function! VimwikiFindAllIncompleteTasks() abort
         VimwikiSearch /- \[ \]/
         lopen
     endfunction
@@ -91,8 +117,11 @@ function! myspacevim#after() abort
     let NERDTreeShowHidden=1
 
     " vim-commentery
-    autocmd FileType apache setlocal commentstring=#\ %s
-    autocmd FileType dosini setlocal commentstring=#\ %s
+    augroup vim_commentary
+        au!
+        autocmd FileType apache setlocal commentstring=#\ %s
+        autocmd FileType dosini setlocal commentstring=#\ %s
+    augroup END
 
     " perl-support.vim
     let g:Perl_PerlcriticSeverity  = 1

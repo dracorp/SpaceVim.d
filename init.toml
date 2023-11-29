@@ -31,16 +31,17 @@ bootstrap_before = 'myspacevim#before'
 
 # options for non-project files/directories
 project_non_root = 'current'
-project_rooter_patterns = ['.git/', '!node_packages/']
-project_rooter_outermost = false
+# project_rooter_patterns = ['.git/', '!node_packages/']
+# project_rooter_outermost = true
+project_auto_root = false
 
 # autocomplete_method = 'neocomplete' # nie dziala
-autocomplete_method = 'neocomplcache'  # dziala
+# autocomplete_method = 'neocomplcache'  # dziala
 # autocomplete_method = 'neocomplete' # nie dziala
 # autocomplete_method = 'deoplete' nie dziala
 # autocomplete_method = 'coc' dziwnie dziala
 # autocomplete_method = 'YouCompleteMe' nie działa
-# autocomplete_method = 'completor' działa
+autocomplete_method = 'completor' # działa
 # autocomplete_method = 'asyncomplete' słabo działa
 # snippet_engine = 'neosnippet' # default
 # snippet_engine = 'ultisnips'
