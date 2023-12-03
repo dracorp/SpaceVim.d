@@ -20,3 +20,4 @@ repos:
     rev: v0.4a3
     hooks:
     - id: vint
+      args: ['--style-problem', '--no-color', '-f', '{file_path}:{line_number}:{column_number}:{severity}:{description} ({policy_name})']

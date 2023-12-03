@@ -1,4 +1,5 @@
 scriptencoding utf-8
+
 function! myspacevim#before() abort
     let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
     let g:MSWIN64 = has('win64')
@@ -12,6 +13,8 @@ function! myspacevim#before() abort
     " pip2 install neovim --upgrade
     " pip3 install neovim --upgrade
     let g:OS      = substitute(system('uname'), '\n', '', '')
+    let g:pluginIsEnabledVerbose = 0
+    let g:bundle_dir = g:spacevim_plugin_bundle_dir . 'repos/github.com'
 
     if g:MACOS
         let g:python3_host_prog = '/opt/homebrew/bin/python3'
@@ -35,26 +38,76 @@ function! myspacevim#before() abort
     set complete+=k                                 " scan the files given with the 'dictionary' option
     set splitbelow                                  " command :sp put a new window below the active
     set splitright                                  " command :vs put a new windows on right side of active
+    set equalalways                                 " Resize windows on split or close
     set tildeop                                     " Tylde(~) behaves like operator
     set iskeyword-=$
     set iskeyword+=-
+    " open file under cursor with env variable
     set isfname+={,}                                " where the file name starts and ends
+    " open file under cursor for entry: VARIABLE=path
     set isfname-==
+    set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
+    set confirm
+    set autowrite                                   " write a modified buffer on each :next
 
     if has('folding')
         set foldenable                              " enable folding
         set foldcolumn=0                            " add a fold column
-        set foldmethod=marker                       " detect triple-{ style fold markers                                                                                          ▲
-        " set foldmarker={{{,}}}                                                                                                                                                    █
+        set foldmethod=marker                       " detect triple-{ style fold marker
+        " set foldmarker={{{,}}}
         set foldlevelstart=1                      " start out with everything unfolded                                                                                             ▼
     endif
-    set wildmode=list:longest,list:full  " show a list when pressing tab and complete
+    " set wildmode=list:longest,list:full  " show a list when pressing tab and complete
+    set noswapfile                  " do not write annoying intermediate swap files
+    set nobackup                    " do not keep backup files, it's 70's style cluttering
+    set diffopt+=iwhite
+    if has("patch-8.1.0360")
+        set diffopt+=indent-heuristic
+        set diffopt+=internal,algorithm:patience
+    endif
+
+    if g:MSWIN64 && has("gui_running")
+        au GUIEnter * simalt ~x
+    else
+        " Maximize GVim on start
+        if has("gui_running")
+            set lines=999 columns=999
+        endif
+    endif
+
+    if has("gui_running")
+        set guioptions+=t                           " include tearoff menu items
+        set guioptions-=T                           " exclude Toolbar
+        if g:MSWIN
+            set guifont=DejaVu_Sans_Mono:h10:cANSI
+        elseif g:MACOS
+            set guifont=Hack-Regular:h13
+            set guifont=FiraCode-Regular:h13
+            set guifont=AgaveNF-Regular:h15
+        elseif g:UNIX
+            set guifont=Hack\ 13
+            set guifont=Cascadia\ Code\ 12
+            set guifont=Iosevka\ Semi-Bold\ 12
+            set guifont=JetBrains\ Mono\ 12
+        endif
+    endif
+    set list
+    set wrap
 
     " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
     let g:polyglot_disabled = ['csv', 'jenkins', 'yaml']
+    if filereadable('mappings.vim')
+        source mappings.vim
+    endif
+    if filereadable('functions.vim')
+        source functions.vim
+    endif
 endfunction
 
 function! myspacevim#after() abort
+    if filereadable(expand("~/.config/vim/local.vim"))
+        source ~/.config/vim/local.vim
+    endif
     " vimwiki
     let g:vimwiki_list = [
                 \ {'path': '~/Documents/vimwiki', 'ext': '.wiki'},
@@ -83,17 +136,22 @@ function! myspacevim#after() abort
     nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
 
     " bash-support
-    if g:UNIX
-      " let g:BASH_LocalTemplateFile    = vimrc_dir . 'templates/bash-support/templates/Templates'
-      " let g:BASH_GuiSnippetBrowser = 'commandline'
-      if g:MACOS
-          let g:BASH_Executable       = '/usr/local/bin/bash'
-      else
-          let g:BASH_Executable       = '/usr/bin/bash'
-      endif
+    if plugin#isEnabled('vim-scripts/bash-support.vim')
+        if g:UNIX
+            let g:BASH_LocalTemplateFile = expand("$HOME/.config/vim/templates/bash-support/templates/Templates")
+            let g:BASH_CodeSnippets      = expand("$HOME/.config/vim/templates/bash-support/codesnippets")
+            let g:BASH_GuiSnippetBrowser = 'commandline'
+            if g:MACOS
+                let g:BASH_Executable       = '/usr/local/bin/bash'
+            else
+                let g:BASH_Executable       = '/usr/bin/bash'
+            endif
+        endif
     endif
     " vim-mundo
-    nnoremap <F5> :MundoToggle<cr>
+    if plugin#isEnabled('simnalamburt/vim-mundo')
+        nnoremap <F5> :MundoToggle<cr>
+    endif
 
     " nerd-commenter
     " Add spaces after comment delimiters by default
@@ -124,34 +182,38 @@ function! myspacevim#after() abort
     augroup END
 
     " perl-support.vim
-    let g:Perl_PerlcriticSeverity  = 1
-    let g:Perl_PerlcriticVerbosity = 9
-    let g:Perl_PodcheckerWarnings  = 'yes'
+    if plugin#isEnabled('vim-scripts/perl-support.vim')
+        let g:Perl_PerlcriticSeverity  = 1
+        let g:Perl_PerlcriticVerbosity = 9
+        let g:Perl_PodcheckerWarnings  = 'yes'
+    endif
 
     " taglist.vim
-    noremap <silent> <S-F11>       :TlistToggle<CR>
-    inoremap <silent> <S-F11>  <C-C>:TlistToggle<CR>
-    let tlist_perl_settings = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
-    " fix your ~/.ctags https://gist.github.com/dracorp/5d7308b894c1c9f301bc9cb8d2f262db
-    let tlist_sh_settings   = 'sh;f:functions;v:variables;c:constants'
-    let Tlist_Enable_Fold_Column=0
-    " quit Vim when the TagList window is the last open window
-    let Tlist_Exit_OnlyWindow=1         " quit when TagList is the last open window
-    let Tlist_GainFocus_On_ToggleOpen=1 " put focus on the TagList window when it opens
-    " let Tlist_Process_File_Always=1     " process files in the background, even when the TagList window isn't open
-    " let Tlist_Show_One_File=1           " only show tags from the current buffer, not all open buffers
-    let Tlist_WinWidth=40               " set the width
-    let Tlist_Inc_Winwidth=1            " increase window by 1 when growing
-    " shorten the time it takes to highlight the current tag (default is 4 secs)
-    " note that this setting influences Vim's behaviour when saving swap files,
-    " but we have already turned off swap files (earlier)
-    " set updatetime=1000
-    " show function/method prototypes in the list
-    let Tlist_Display_Prototype=1
-    " don't show scope info
-    let Tlist_Display_Tag_Scope=1
-    " show TagList window on the left
-    let Tlist_Use_Left_Window=1
+    if plugin#isEnabled('vim-scripts/taglist.vim')
+        noremap <silent> <S-F11>       :TlistToggle<CR>
+        inoremap <silent> <S-F11>  <C-C>:TlistToggle<CR>
+        let tlist_perl_settings = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
+        " fix your ~/.ctags https://gist.github.com/dracorp/5d7308b894c1c9f301bc9cb8d2f262db
+        let tlist_sh_settings   = 'sh;f:functions;v:variables;c:constants'
+        let Tlist_Enable_Fold_Column=0
+        " quit Vim when the TagList window is the last open window
+        let Tlist_Exit_OnlyWindow=1         " quit when TagList is the last open window
+        let Tlist_GainFocus_On_ToggleOpen=1 " put focus on the TagList window when it opens
+        " let Tlist_Process_File_Always=1     " process files in the background, even when the TagList window isn't open
+        " let Tlist_Show_One_File=1           " only show tags from the current buffer, not all open buffers
+        let Tlist_WinWidth=40               " set the width
+        let Tlist_Inc_Winwidth=1            " increase window by 1 when growing
+        " shorten the time it takes to highlight the current tag (default is 4 secs)
+        " note that this setting influences Vim's behaviour when saving swap files,
+        " but we have already turned off swap files (earlier)
+        " set updatetime=1000
+        " show function/method prototypes in the list
+        let Tlist_Display_Prototype=1
+        " don't show scope info
+        let Tlist_Display_Tag_Scope=1
+        " show TagList window on the left
+        let Tlist_Use_Left_Window=1
+    endif
 
     " Vista
     noremap  <silent> <S-F12>       :Vista!!<CR>

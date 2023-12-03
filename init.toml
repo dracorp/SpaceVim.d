@@ -55,7 +55,7 @@ auto_completion_tab_key_behavior = 'smart'
 [[layers]]
 # enabled by default
 name = 'checkers'
-show_cursor_error = false
+# show_cursor_error = false
 
 [[layers]]
 name = 'foldsearch'
@@ -74,7 +74,7 @@ autosave_timeout = 300000
 name = 'ui'
 enable_cursorword = true
 enable_indentline = false
-enable_scrollbar = true
+enable_scrollbar = false
 enable_sidebar = true
 
 [[layers]]
@@ -226,8 +226,8 @@ repo = 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
 [[custom_plugins]]
 repo = 'https://github.com/dracorp/vim-pkgbuild'
 
-[[custom_plugins]]
-repo = 'https://github.com/liuchengxu/vista.vim'
+# [[custom_plugins]]
+# repo = 'https://github.com/liuchengxu/vista.vim'
 
 [[custom_plugins]]
 repo = 'https://github.com/scrooloose/syntastic'
@@ -241,8 +241,8 @@ repo = 'https://github.com/tpope/vim-fugitive'
 [[custom_plugins]]
 repo = 'https://github.com/junegunn/gv.vim'
 
-[[custom_plugins]]
-repo = 'https://github.com/sheerun/vim-polyglot'
+# [[custom_plugins]]
+# repo = 'https://github.com/sheerun/vim-polyglot'
 
 [[custom_plugins]]
 repo = 'https://github.com/osyo-manga/vim-over'
