@@ -8,12 +8,28 @@
 
 [options]
 automatic_update = true
-statusline_iseparator = 'arrow'
 statusline_separator = 'arrow'
+statusline_left = [
+  'winnr',
+  'filename',
+  'major mode',
+  'minor mode lighters',
+  'version control info',
+  'search status'
+]
+statusline_right = [
+  'fileformat',
+  'cursorpos',
+  'percentage',
+  'whitespace',
+  'syntax checking'
+]
+# right sections of statusline
 # disable 'q' to close current window
 # windows_smartclose = ''
 # in vimcompatible mode, all the differences above will disappear
-vimcompatible = true
+# windows_leader = 's'
+vimcompatible = false
 buffer_index_type = 4
 colorscheme = 'gruvbox'
 colorscheme_bg = 'dark'
@@ -22,7 +38,13 @@ disabled_plugins = ['tagbar']
 enable_guicolors = true
 enable_statusline_mode = true
 enable_tabline_filetype_icon = true
+# default is vimfiler
 filemanager = 'nerdtree'
+# works only in nvim
+# filemanager = 'defx'
+# enable_vimfiler_gitstatus = true
+filetree_direction = "left"
+enable_vimfiler_welcome = true
 guifont = 'AgaveNF-Regular:h15'
 
 # ~/.SpaceVim.d/autoload/myspacevim.vim
@@ -90,6 +112,11 @@ filetree_show_hidden = true
 name = 'core#statusline'
 
 [[layers]]
+# disabled by default
+name = 'core#statuscolumn'
+enable = true
+
+[[layers]]
 # enabled by default
 name = 'core#banner'
 
@@ -149,10 +176,13 @@ name = 'lang#sh'
 name = 'lang#vim'
 
 [[layers]]
-name = 'denite'
+name = 'unite'
 
 [[layers]]
 name = 'colorscheme'
+
+[[layers]]
+name = "tools"
 
 [[custom_plugins]]
 repo = 'https://github.com/lilydjwg/colorizer'
@@ -226,8 +256,8 @@ repo = 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
 [[custom_plugins]]
 repo = 'https://github.com/dracorp/vim-pkgbuild'
 
-# [[custom_plugins]]
-# repo = 'https://github.com/liuchengxu/vista.vim'
+[[custom_plugins]]
+repo = 'https://github.com/liuchengxu/vista.vim'
 
 [[custom_plugins]]
 repo = 'https://github.com/scrooloose/syntastic'
@@ -264,3 +294,9 @@ repo = 'https://github.com/mzlogin/vim-markdown-toc'
 
 [[custom_plugins]]
 repo = 'https://github.com/ryanoasis/vim-devicons'
+
+[[custom_plugins]]
+repo = 'khzaw/vim-conceal'
+
+[[custom_plugins]]
+repo = 'Shougo/vimproc.vim'
