@@ -55,7 +55,7 @@ bootstrap_before = 'myspacevim#before'
 project_non_root = 'current'
 # project_rooter_patterns = ['.git/', '!node_packages/']
 # project_rooter_outermost = true
-project_auto_root = false
+# project_auto_root = false
 
 # autocomplete_method = 'neocomplete' # nie dziala
 # autocomplete_method = 'neocomplcache'  # dziala
@@ -68,6 +68,12 @@ autocomplete_method = 'completor' # działa
 # snippet_engine = 'neosnippet' # default
 # snippet_engine = 'ultisnips'
 
+# checkers
+# lint_engine = 'ale'
+# lint_engine = 'syntastic'
+lint_on_the_fly = true
+# open_error_list = 2
+
 [[layers]]
 # enabled by default
 name = 'autocomplete'
@@ -77,7 +83,7 @@ auto_completion_tab_key_behavior = 'smart'
 [[layers]]
 # enabled by default
 name = 'checkers'
-# show_cursor_error = false
+show_cursor_error = false
 
 [[layers]]
 name = 'foldsearch'
@@ -248,6 +254,18 @@ repo = 'https://github.com/tpope/vim-sensible'
 repo = 'https://github.com/tpope/vim-speeddating'
 
 [[custom_plugins]]
+repo = 'https://github.com/tpope/vim-repeat'
+
+[[custom_plugins]]
+repo = 'https://github.com/tpope/vim-fugitive'
+
+[[custom_plugins]]
+repo = 'https://github.com/tpope/vim-rhubarb'
+
+[[custom_plugins]]
+repo = 'https://github.com/rhysd/committia.vim'
+
+[[custom_plugins]]
 repo = 'https://github.com/simnalamburt/vim-mundo'
 
 [[custom_plugins]]
@@ -264,9 +282,6 @@ repo = 'https://github.com/scrooloose/syntastic'
 
 [[custom_plugins]]
 repo = 'https://github.com/airblade/vim-gitgutter'
-
-[[custom_plugins]]
-repo = 'https://github.com/tpope/vim-fugitive'
 
 [[custom_plugins]]
 repo = 'https://github.com/junegunn/gv.vim'
@@ -288,6 +303,9 @@ repo = 'https://github.com/honza/vim-snippets'
 repo = 'https://github.com/mzlogin/vim-markdown-toc'
 
 # [[custom_plugins]]
+# repo = 'https://github.com/instant-markdown/vim-instant-markdown'
+
+# [[custom_plugins]]
 #   repo = 'https://github.com/xolox/vim-misc'
 # [[custom_plugins]]
 #   repo = 'https://github.com/xolox/vim-easytags'
@@ -296,7 +314,16 @@ repo = 'https://github.com/mzlogin/vim-markdown-toc'
 repo = 'https://github.com/ryanoasis/vim-devicons'
 
 [[custom_plugins]]
-repo = 'khzaw/vim-conceal'
+repo = 'https://github.com/khzaw/vim-conceal'
 
 [[custom_plugins]]
-repo = 'Shougo/vimproc.vim'
+repo = 'https://github.com/Shougo/vimproc.vim'
+
+[[custom_plugins]]
+repo = 'https://github.com/terryma/vim-multiple-cursors'
+
+[[custom_plugins]]
+repo = 'https://github.com/wellle/context.vim'
+
+[[custom_plugins]]
+repo = 'https://github.com/Shougo/echodoc.vim'

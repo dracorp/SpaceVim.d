@@ -13,20 +13,30 @@ function! myspacevim#before() abort
     " pip2 install neovim --upgrade
     " pip3 install neovim --upgrade
     let g:OS      = substitute(system('uname'), '\n', '', '')
+    " for plugin.vim
     let g:pluginIsEnabledVerbose = 0
     let g:bundle_dir = g:spacevim_plugin_bundle_dir . 'repos/github.com'
+    " for loading configuration from files
+    let $VIM_HOME=$HOME.'/.SpaceVim.d/autoload'
 
     if g:MACOS
-        let g:python3_host_prog = '/opt/homebrew/bin/python3'
+        " let g:python3_host_prog = '/opt/homebrew/bin/python3'
+        let g:python3_host_prog=substitute(system('which python3'), '\n', '', 'g')
         " let g:python3_host_prog = '/Users/u537501/.pyenv/versions/3.11.6/bin/python'
     endif
 
-    set matchpairs+=<:> " Add HTML brackets to pair matching
-    set ignorecase               " ignore case when searching
-    " set smartcase                " ignore case if search pattern is all lowercase, case-sensitive otherwise
-    " set autoindent                                  " always set autoindenting on
-    " set smartindent                                 " smart autoindenting when starting a new line
-    " set copyindent                                  " copy the previous indentation on autoindenting
+    " Add HTML brackets to pair matching
+    set matchpairs+=<:>
+    " ignore case when searching
+    set ignorecase
+    " ignore case if search pattern is all lowercase, case-sensitive otherwise
+    " set smartcase
+    " always set autoindenting on
+    " set autoindent
+    " smart autoindenting when starting a new line
+    " set smartindent
+    " copy the previous indentation on autoindenting
+    " set copyindent
     set nojoinspaces                                " do not insert 2 spaces after .?! when join lines <J>
     set formatoptions+=1                            " long lines are not broken in insert mode
     set formatoptions-=t                            " noautowrap text using textwidth
@@ -49,6 +59,9 @@ function! myspacevim#before() abort
     set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
     set confirm
     set autowrite                                   " write a modified buffer on each :next
+    " set wildmode=list:longest,list:full  " show a list when pressing tab and complete
+    set noswapfile                  " do not write annoying intermediate swap files
+    set nobackup                    " do not keep backup files, it's 70's style cluttering
 
     if has('folding')
         set foldenable                              " enable folding
@@ -56,10 +69,12 @@ function! myspacevim#before() abort
         set foldmethod=marker                       " detect triple-{ style fold marker
         " set foldmarker={{{,}}}
         set foldlevelstart=1                      " start out with everything unfolded                                                                                             ▼
+        " Don't open folds when search into them
+        set foldopen-=search
+        " Don't open folds when undo stuff
+        set foldopen-=undo
     endif
-    " set wildmode=list:longest,list:full  " show a list when pressing tab and complete
-    set noswapfile                  " do not write annoying intermediate swap files
-    set nobackup                    " do not keep backup files, it's 70's style cluttering
+
     set diffopt+=iwhite
     if has("patch-8.1.0360")
         set diffopt+=indent-heuristic
@@ -93,22 +108,30 @@ function! myspacevim#before() abort
     endif
     set list
     set wrap
+    " Add empty newlines at the end of files
+    set endofline
 
     " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
     let g:polyglot_disabled = ['csv', 'jenkins', 'yaml']
-    if filereadable('mappings.vim')
-        source mappings.vim
-    endif
-    if filereadable('functions.vim')
-        source functions.vim
-    endif
 endfunction
 
 function! myspacevim#after() abort
     if filereadable(expand("~/.config/vim/local.vim"))
         source ~/.config/vim/local.vim
     endif
-    " vimwiki
+"" Theme: Gruvbox {{{
+    " Set option value to 16 to fallback
+    let g:gruvbox_termcolors=256
+    " Change darkmode contrast. Possible values are `soft`, `medium`, `hard`
+    let g:gruvbox_contrast_dark='medium'
+    " Change lightmode contrast. Possible values are `soft`, `medium`, `hard`
+    let g:gruvbox_contrast_light='hard'
+    " Change cursor background
+    let g:gruvbox_hls_cursor='green'
+    " Inverts indent guides
+    let g:gruvbox_invert_indent_guides=0
+"" }}}
+"" Plugin: vimwiki
     let g:vimwiki_list = [
                 \ {'path': '~/Documents/vimwiki', 'ext': '.wiki'},
                 \ {'path': '~/Projects/Projects-other/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'},
@@ -134,6 +157,7 @@ function! myspacevim#after() abort
 
     nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
     nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
+"" }}}
 
     " bash-support
     if plugin#isEnabled('vim-scripts/bash-support.vim')
@@ -153,7 +177,7 @@ function! myspacevim#after() abort
         nnoremap <F5> :MundoToggle<cr>
     endif
 
-    " nerd-commenter
+"" Plugin: nerd-commenter {{{
     " Add spaces after comment delimiters by default
     let g:NERDSpaceDelims = 1
     " Use compact syntax for prettified multi-line comments
@@ -171,24 +195,30 @@ function! myspacevim#after() abort
     let g:NERDCustomDelimiters = {
       \ 'brewfile': { 'left': '#','right': '' }
     \ }
-    " nerdtree
-    let NERDTreeShowHidden=1
+"" }}}
 
-    " vim-commentery
+"" Explore filesystem with Vim
+"" Plugin: NERDTree {{{
+    let NERDTreeShowHidden=1
+"" }}}
+
+"" Plugin: vim-commentery {{{
     augroup vim_commentary
         au!
         autocmd FileType apache setlocal commentstring=#\ %s
         autocmd FileType dosini setlocal commentstring=#\ %s
     augroup END
+"" }}}
 
-    " perl-support.vim
+"" Plugin: perl-support.vim {{{
     if plugin#isEnabled('vim-scripts/perl-support.vim')
         let g:Perl_PerlcriticSeverity  = 1
         let g:Perl_PerlcriticVerbosity = 9
         let g:Perl_PodcheckerWarnings  = 'yes'
     endif
+"" }}}
 
-    " taglist.vim
+"" Plugin: taglist.vim {{{
     if plugin#isEnabled('vim-scripts/taglist.vim')
         noremap <silent> <S-F11>       :TlistToggle<CR>
         inoremap <silent> <S-F11>  <C-C>:TlistToggle<CR>
@@ -214,8 +244,95 @@ function! myspacevim#after() abort
         " show TagList window on the left
         let Tlist_Use_Left_Window=1
     endif
+"" }}}
 
-    " Vista
+"" Plugin: Vista {{{
     noremap  <silent> <S-F12>       :Vista!!<CR>
     inoremap <silent> <S-F12>  <C-C>:Vista!!<CR>
+"" }}}
+
+"" Browse Github events in Vim
+"" Plugin: Github Dashboard {{{
+    "" GitHub Public
+    let g:github_dashboard={}
+    let g:github_dashboard['username']='dracorp'
+    " Set shortcut for GitHub Dashboard
+    nnoremap <Leader>ghd :GHDashboard<CR>
+    nnoremap <Leader>gha :GHActivity<CR>
+    nnoremap <Leader>ghD :GHDashboard<space>
+    nnoremap <Leader>ghA :GHActivity<space>
+
+    "" GitHub Enterprise
+    " let g:github_dashboard#private={}
+    " let g:github_dashboard#private['username']='posquit0'
+    " Configure default GitHub endpoints
+    " let g:github_dashboard#private['api_endpoint']='https://github.private.com/api/v3'
+    " let g:github_dashboard#private['web_endpoint']='https://github.private.com'
+"" }}}
+"" Plugin: Colorizer {{{
+  " Method to highlight
+  let g:Hexokinase_highlighters=['backgroundfull']
+  " Patterns to match for all filetypes
+  let g:Hexokinase_optInPatterns = [
+  \ 'full_hex',
+  \ 'triple_hex',
+  \ 'rgb',
+  \ 'rgba',
+  \ 'hsl',
+  \ 'hsla',
+  \ 'colour_names'
+  \ ]
+"" }}}
+
+"" Bringing Sublime Text's awesome multiple selection feature into Vim
+"" Plugin: Vim Multiple Cursors {{{
+  " Turn off the default key bindings
+  let g:multi_cursor_use_default_mapping=0
+  " Configure custom key bindings
+  let g:multi_cursor_next_key='<C-n>'
+  let g:multi_cursor_prev_key='<C-p>'
+  let g:multi_cursor_skip_key='<C-x>'
+  let g:multi_cursor_quit_key='<Esc>'
+  " Quit and delete all existing cursor in visual mode after pressing quit key
+  let g:multi_cursor_exit_from_visual_mode=1
+  " Quit and delete all existing cursor in insert mode after pressing quit key
+  let g:multi_cursor_exit_from_insert_mode=0
+"" }}}
+
+"" For intensely orgasmic commenting
+"" Plugin: NERD Commenter {{{
+  " Comment the whole lines in visual mode
+  let g:NERDCommentWholeLinesInVMode=1
+  " Add space after the left delimiter and before the right delimiter
+  let g:NERDSpaceDelims=1
+  " Use compact syntax for prettified multi-line comments
+  let g:NERDCompactSexyComs=1
+  " Allow commenting and inverting empty lines (useful when commenting a region)
+  let g:NERDCommentEmptyLines=1
+  " Enable trimming of trailing whitespace when uncommenting
+  let g:NERDTrimTrailingWhitespace=1
+"" }}}
+
+"" Show the context of the currently visible buffer contents
+"" Plugin: Context {{{
+  " Whether to enable the context plugin
+  let g:context_enabled=1
+  " INFO: Issue in Neovim which leads to some artefacts
+  let g:context_nvim_no_redraw=1
+" }}}
+
+""" Config Plugins {{{
+  " Configurations for plugins to load into Vim
+  let plugin_configurations=[
+  \ 'mappings.vim',
+  \ 'functions.vim',
+  \ ]
+  for configuration in plugin_configurations
+    let config_path = join([$VIM_HOME, configuration], '/')
+    if filereadable(config_path)
+      execute 'source ' . config_path
+    endif
+  endfor
+""" }}}
+
 endfunction
