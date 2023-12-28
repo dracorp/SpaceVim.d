@@ -31,8 +31,8 @@ vimcompatible = false
 buffer_index_type = 0
 colorscheme = 'gruvbox'
 colorscheme_bg = 'dark'
-default_indent = 4
-disabled_plugins = ['tagbar']
+# default_indent = 4
+disabled_plugins = ['tagbar', 'indentLine' ]
 enable_guicolors = true
 enable_statusline_mode = true
 enable_tabline_filetype_icon = true
@@ -67,10 +67,12 @@ autocomplete_method = 'completor' # działa
 # snippet_engine = 'ultisnips'
 
 # checkers
+# lint_engine = 'neomake'
 # lint_engine = 'ale'
 # lint_engine = 'syntastic'
-lint_on_the_fly = true
+# lint_on_the_fly = true
 # open_error_list = 2
+# enable_googlesuggest = 1
 #}}}
 
 #{{{ layers
@@ -87,9 +89,9 @@ auto_completion_tab_key_behavior = 'smart'
 name = 'checkers'
 show_cursor_error = true
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/colorscheme/
-name = 'colorscheme'
+# name = 'colorscheme'
 
 [[layers]]
 # https://spacevim.org/layers/core/banner/
@@ -143,11 +145,11 @@ name = "default"
 # https://spacevim.org/layers/edit/
 # enabled by default
 name = 'edit'
-autosave_timeout = 300000
+# autosave_timeout = 300000
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/foldsearch/
-name = 'foldsearch'
+# name = 'foldsearch'
 
 [[layers]]
 # enabled by default
@@ -155,18 +157,31 @@ name = 'foldsearch'
 name = 'format'
 
 [[layers]]
+# https://spacevim.org/layers/fzf/
+name = "fzf"
+
+# [[layers]] # broken
+# name = 'fuzzy'
+
+[[layers]]
 # https://spacevim.org/layers/git/
 name = 'git'
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/github/
-name = 'github'
+# name = 'github'
+
+[[layers]]
+# [SPC g 2]
+name = 'games'
 
 [[layers]]
 # https://spacevim.org/layers/gtags/
 name = 'gtags'
-# gtagslabel = 'ctags'
-gtagslabel = 'exuberant ctags'
+gtagslabel = 'ctags'
+# gtagslabel = 'exuberant ctags'
+auto_update = true
+open_quickfix = 1
 # gtagslabel = 'pygments'
 
 [[layers]]
@@ -209,9 +224,9 @@ name = "lang#xml"
 
 #}}}2
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/language-server-protocol/
-name = "lsp"
+# name = "lsp"
 
 [[layers]]
 # https://spacevim.org/layers/shell/
@@ -219,9 +234,9 @@ name = 'shell'
 default_height = 30
 default_position = 'bottom'
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/sudo/
-name = "sudo"
+# name = "sudo"
 
 [[layers]]
 # https://spacevim.org/layers/tools/
@@ -249,8 +264,8 @@ name = 'VersionControl'
 [[custom_plugins]]
 repo = 'https://github.com/lilydjwg/colorizer'
 
-[[custom_plugins]]
-repo = 'https://github.com/editorconfig/editorconfig-vim'
+# [[custom_plugins]] # built-in editor
+# repo = 'https://github.com/editorconfig/editorconfig-vim'
 
 [[custom_plugins]]
 repo = 'https://github.com/xu-cheng/brew.vim'
@@ -258,11 +273,11 @@ repo = 'https://github.com/xu-cheng/brew.vim'
 [[custom_plugins]]
 repo = 'https://github.com/vimwiki/vimwiki'
 
-[[custom_plugins]]
-repo = 'https://github.com/godlygeek/tabular'
+# [[custom_plugins]] # built-in editor
+# repo = 'https://github.com/godlygeek/tabular'
 
-[[custom_plugins]]
-repo = 'https://github.com/AndrewRadev/splitjoin.vim'
+# [[custom_plugins]]
+# repo = 'https://github.com/AndrewRadev/splitjoin.vim'
 
 [[custom_plugins]]
 repo = 'https://github.com/matze/vim-move'
@@ -300,8 +315,8 @@ repo = 'https://github.com/vim-scripts/betterga'
 [[custom_plugins]]
 repo = 'https://github.com/tpope/vim-abolish'
 
-[[custom_plugins]]
-repo = 'https://github.com/tpope/vim-scriptease'
+# [[custom_plugins]] # built-in tools
+# repo = 'https://github.com/tpope/vim-scriptease'
 
 [[custom_plugins]]
 repo = 'https://github.com/tpope/vim-sensible'
@@ -309,8 +324,8 @@ repo = 'https://github.com/tpope/vim-sensible'
 # [[custom_plugins]]
 # repo = 'https://github.com/tpope/vim-speeddating'
 
-[[custom_plugins]]
-repo = 'https://github.com/tpope/vim-repeat'
+# [[custom_plugins]] # built-in editor
+# repo = 'https://github.com/tpope/vim-repeat'
 
 [[custom_plugins]]
 repo = 'https://github.com/tpope/vim-fugitive'
@@ -321,8 +336,8 @@ repo = 'https://github.com/tpope/vim-rhubarb'
 [[custom_plugins]]
 repo = 'https://github.com/rhysd/committia.vim'
 
-[[custom_plugins]]
-repo = 'https://github.com/simnalamburt/vim-mundo'
+# [[custom_plugins]] # built-in edit
+# repo = 'https://github.com/simnalamburt/vim-mundo'
 
 [[custom_plugins]]
 repo = 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
@@ -336,18 +351,19 @@ repo = 'https://github.com/liuchengxu/vista.vim'
 [[custom_plugins]]
 repo = 'https://github.com/scrooloose/syntastic'
 
-[[custom_plugins]]
-repo = 'https://github.com/airblade/vim-gitgutter'
+# [[custom_plugins]] # built-in git
+# repo = 'https://github.com/airblade/vim-gitgutter'
 
 [[custom_plugins]]
+# A git commit browser in Vim
 repo = 'https://github.com/junegunn/gv.vim'
 
 # [[custom_plugins]]
 # repo = 'https://github.com/sheerun/vim-polyglot'
 
-[[custom_plugins]]
+# [[custom_plugins]] # built-in incsearch
 # :substitute preview
-repo = 'https://github.com/osyo-manga/vim-over'
+# repo = 'https://github.com/osyo-manga/vim-over'
 
 [[custom_plugins]]
 repo = 'https://github.com/vim-scripts/DrawIt'
@@ -367,13 +383,13 @@ repo = 'https://github.com/mzlogin/vim-markdown-toc'
 # [[custom_plugins]]
 #   repo = 'https://github.com/xolox/vim-easytags'
 
-[[custom_plugins]]
-repo = 'https://github.com/ryanoasis/vim-devicons'
+# [[custom_plugins]]
+# repo = 'https://github.com/ryanoasis/vim-devicons'
 
 # [[custom_plugins]]
 # repo = 'https://github.com/khzaw/vim-conceal'
 
-# [[custom_plugins]]
+# [[custom_plugins]] # built-in core
 # repo = 'https://github.com/Shougo/vimproc.vim'
 
 [[custom_plugins]]
@@ -386,6 +402,6 @@ repo = 'https://github.com/mg979/vim-visual-multi'
 # repo = 'https://github.com/Shougo/echodoc.vim'
 
 [[custom_plugins]]
+# built-in tools
 repo = 'https://github.com/itchyny/calendar.vim'
 #}}}
-
