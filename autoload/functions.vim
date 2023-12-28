@@ -284,3 +284,27 @@ if has('signs') && version >= 800
     nnoremap <Leader>S :call ToggleSignColumn()<CR>
 endif
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+""" Hex Editor {{{
+  " Map HexEditToggle to <F9>
+  nnoremap <silent> <F9> :call HexEditToggle()<CR>
+  let g:hexmode=0
+  function! HexEditToggle()
+    if g:hexmode
+      let g:hexmode=0
+      %!xxd -r
+    else
+      let g:hexmode=1
+      %!xxd
+    endif
+  endfunction
+" }}}
+
+""" Indentation {{{
+  " Tab to indent in visual mode
+  xnoremap <Tab> >gv
+  " Shift+Tab to unindent in visual mode
+  xnoremap <S-Tab> <gv
+" }}}
+" Screen sucks, redraw everything
+nnoremap <Leader>r :redraw!<CR>

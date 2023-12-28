@@ -1,14 +1,12 @@
 # =============================================================================
-# dark powered configuration example for SpaceVim
-# Copyright (c) 2016-2023 Wang Shidong & Contributors
-# Author: Wang Shidong < wsdjeg@outlook.com >
 # URL: https://spacevim.org
 # License: GPLv3
 # =============================================================================
 
-[options]
+[options] #{{{
 automatic_update = true
 statusline_separator = 'arrow'
+statusline_iseparator = 'bar'
 statusline_left = [
   'winnr',
   'filename',
@@ -30,7 +28,7 @@ statusline_right = [
 # in vimcompatible mode, all the differences above will disappear
 # windows_leader = 's'
 vimcompatible = false
-buffer_index_type = 4
+buffer_index_type = 0
 colorscheme = 'gruvbox'
 colorscheme_bg = 'dark'
 default_indent = 4
@@ -73,8 +71,11 @@ autocomplete_method = 'completor' # działa
 # lint_engine = 'syntastic'
 lint_on_the_fly = true
 # open_error_list = 2
+#}}}
 
+#{{{ layers
 [[layers]]
+# https://spacevim.org/layers/autocomplete/
 # enabled by default
 name = 'autocomplete'
 auto_completion_return_key_behavior = 'smart'
@@ -82,30 +83,37 @@ auto_completion_tab_key_behavior = 'smart'
 
 [[layers]]
 # enabled by default
+# https://spacevim.org/layers/checkers/
 name = 'checkers'
-show_cursor_error = false
+show_cursor_error = true
 
 [[layers]]
-name = 'foldsearch'
+# https://spacevim.org/layers/colorscheme/
+name = 'colorscheme'
 
 [[layers]]
+# https://spacevim.org/layers/core/banner/
 # enabled by default
-name = 'format'
+name = 'core#banner'
 
 [[layers]]
+# disabled by default
+name = 'core#statuscolumn'
+enable = true
+
+[[layers]]
+# https://spacevim.org/layers/core/statusline/
 # enabled by default
-name = 'edit'
-autosave_timeout = 300000
+name = 'core#statusline'
+major_mode_cache = false
 
 [[layers]]
+# https://spacevim.org/layers/core/tabline/
 # enabled by default
-name = 'ui'
-enable_cursorword = true
-enable_indentline = false
-enable_scrollbar = false
-enable_sidebar = true
+name = 'core#tabline'
 
 [[layers]]
+# https://spacevim.org/layers/core/
 # enabled by default
 name = 'core'
 enable_filetree_filetypeicon = true
@@ -114,82 +122,130 @@ enable_smooth_scrolling = false
 filetree_show_hidden = true
 
 [[layers]]
-# enabled by default
-name = 'core#statusline'
-
-[[layers]]
-# disabled by default
-name = 'core#statuscolumn'
-enable = true
-
-[[layers]]
-# enabled by default
-name = 'core#banner'
-
-[[layers]]
-# enabled by default
-name = 'core#tabline'
-
-[[layers]]
+# https://spacevim.org/layers/cscope/
 name = 'cscope'
 
+[[layers]]
+# https://spacevim.org/layers/ctrlspace/
+name = "ctrlspace"
+enable-spacevim-styled-keys = true
+
 # [[layers]]
-# name = "default"
+# https://spacevim.org/layers/debug/
+# name = "debug"
+# debugger_plugin = "vimspector"
 
 [[layers]]
+# https://spacevim.org/layers/default/
+name = "default"
+
+[[layers]]
+# https://spacevim.org/layers/edit/
+# enabled by default
+name = 'edit'
+autosave_timeout = 300000
+
+[[layers]]
+# https://spacevim.org/layers/foldsearch/
 name = 'foldsearch'
 
 [[layers]]
-name = 'shell'
-default_height = 30
-default_position = 'bottom'
+# enabled by default
+# https://spacevim.org/layers/format/
+name = 'format'
 
 [[layers]]
+# https://spacevim.org/layers/git/
 name = 'git'
 
 [[layers]]
-name = 'VersionControl'
-
-[[layers]]
+# https://spacevim.org/layers/github/
 name = 'github'
 
 [[layers]]
-name = 'lang#toml'
+# https://spacevim.org/layers/gtags/
+name = 'gtags'
+# gtagslabel = 'ctags'
+gtagslabel = 'exuberant ctags'
+# gtagslabel = 'pygments'
 
+[[layers]]
+name = 'incsearch'
+
+#{{{2 langs
 [[layers]]
 name = 'lang#dockerfile'
 
 [[layers]]
-name = 'lang#html'
+name = "lang#groovy"
 
 [[layers]]
-name = 'lang#json'
+name = 'lang#html'
 
-# breaks md
 # [[layers]]
+# breaks md
 #   name = 'lang#markdown'
 
 [[layers]]
-name = 'lang#python'
+name = 'lang#json'
 
 [[layers]]
 name = 'lang#perl'
 
 [[layers]]
+name = 'lang#python'
+
+[[layers]]
 name = 'lang#sh'
+
+[[layers]]
+name = 'lang#toml'
 
 [[layers]]
 name = 'lang#vim'
 
 [[layers]]
+name = "lang#xml"
+
+#}}}2
+
+[[layers]]
+# https://spacevim.org/layers/language-server-protocol/
+name = "lsp"
+
+[[layers]]
+# https://spacevim.org/layers/shell/
+name = 'shell'
+default_height = 30
+default_position = 'bottom'
+
+[[layers]]
+# https://spacevim.org/layers/sudo/
+name = "sudo"
+
+[[layers]]
+# https://spacevim.org/layers/tools/
+name = "tools"
+
+[[layers]]
+# https://spacevim.org/layers/ui/
+# enabled by default
+name = 'ui'
+enable_cursorword = true
+enable_indentline = false
+enable_scrollbar = false
+enable_sidebar = true
+
+[[layers]]
+# https://spacevim.org/layers/unite/
 name = 'unite'
 
 [[layers]]
-name = 'colorscheme'
+# https://spacevim.org/layers/VersionControl/
+name = 'VersionControl'
+#}}}
 
-[[layers]]
-name = "tools"
-
+#{{{ custom plugins
 [[custom_plugins]]
 repo = 'https://github.com/lilydjwg/colorizer'
 
@@ -250,8 +306,8 @@ repo = 'https://github.com/tpope/vim-scriptease'
 [[custom_plugins]]
 repo = 'https://github.com/tpope/vim-sensible'
 
-[[custom_plugins]]
-repo = 'https://github.com/tpope/vim-speeddating'
+# [[custom_plugins]]
+# repo = 'https://github.com/tpope/vim-speeddating'
 
 [[custom_plugins]]
 repo = 'https://github.com/tpope/vim-repeat'
@@ -290,6 +346,7 @@ repo = 'https://github.com/junegunn/gv.vim'
 # repo = 'https://github.com/sheerun/vim-polyglot'
 
 [[custom_plugins]]
+# :substitute preview
 repo = 'https://github.com/osyo-manga/vim-over'
 
 [[custom_plugins]]
@@ -313,17 +370,22 @@ repo = 'https://github.com/mzlogin/vim-markdown-toc'
 [[custom_plugins]]
 repo = 'https://github.com/ryanoasis/vim-devicons'
 
-[[custom_plugins]]
-repo = 'https://github.com/khzaw/vim-conceal'
+# [[custom_plugins]]
+# repo = 'https://github.com/khzaw/vim-conceal'
+
+# [[custom_plugins]]
+# repo = 'https://github.com/Shougo/vimproc.vim'
 
 [[custom_plugins]]
-repo = 'https://github.com/Shougo/vimproc.vim'
+repo = 'https://github.com/mg979/vim-visual-multi'
+
+# [[custom_plugins]]
+# repo = 'https://github.com/wellle/context.vim'
+
+# [[custom_plugins]]
+# repo = 'https://github.com/Shougo/echodoc.vim'
 
 [[custom_plugins]]
-repo = 'https://github.com/terryma/vim-multiple-cursors'
+repo = 'https://github.com/itchyny/calendar.vim'
+#}}}
 
-[[custom_plugins]]
-repo = 'https://github.com/wellle/context.vim'
-
-[[custom_plugins]]
-repo = 'https://github.com/Shougo/echodoc.vim'

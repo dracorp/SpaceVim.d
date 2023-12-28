@@ -17,7 +17,7 @@ function! myspacevim#before() abort
     let g:pluginIsEnabledVerbose = 0
     let g:bundle_dir = g:spacevim_plugin_bundle_dir . 'repos/github.com'
     " for loading configuration from files
-    let $VIM_HOME=$HOME.'/.SpaceVim.d/autoload'
+    let $VIM_HOME=$HOME.'/.SpaceVim.d'
 
     if g:MACOS
         " let g:python3_host_prog = '/opt/homebrew/bin/python3'
@@ -116,9 +116,8 @@ function! myspacevim#before() abort
 endfunction
 
 function! myspacevim#after() abort
-    if filereadable(expand("~/.config/vim/local.vim"))
-        source ~/.config/vim/local.vim
-    endif
+    unmap <
+    unmap >
 "" Theme: Gruvbox {{{
     " Set option value to 16 to fallback
     let g:gruvbox_termcolors=256
@@ -162,8 +161,8 @@ function! myspacevim#after() abort
     " bash-support
     if plugin#isEnabled('vim-scripts/bash-support.vim')
         if g:UNIX
-            let g:BASH_LocalTemplateFile = expand("$HOME/.config/vim/templates/bash-support/templates/Templates")
-            let g:BASH_CodeSnippets      = expand("$HOME/.config/vim/templates/bash-support/codesnippets")
+            let g:BASH_LocalTemplateFile = expand("$VIM_HOME/templates/bash-support/templates/Templates")
+            let g:BASH_CodeSnippets      = expand("$VIM_HOME/templates/bash-support/codesnippets")
             let g:BASH_GuiSnippetBrowser = 'commandline'
             if g:MACOS
                 let g:BASH_Executable       = '/usr/local/bin/bash'
@@ -327,12 +326,15 @@ function! myspacevim#after() abort
   \ 'mappings.vim',
   \ 'functions.vim',
   \ ]
-  for configuration in plugin_configurations
-    let config_path = join([$VIM_HOME, configuration], '/')
-    if filereadable(config_path)
-      execute 'source ' . config_path
+    for configuration in plugin_configurations
+        let config_path = join([$VIM_HOME, 'autoload', configuration], '/')
+        if filereadable(config_path)
+            execute 'source ' . config_path
+        endif
+    endfor
+    if filereadable(expand("~/.config/vim/local.vim"))
+        source ~/.config/vim/local.vim
     endif
-  endfor
 """ }}}
 
 endfunction
