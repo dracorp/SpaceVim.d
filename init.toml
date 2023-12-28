@@ -264,20 +264,11 @@ name = 'VersionControl'
 [[custom_plugins]]
 repo = 'https://github.com/lilydjwg/colorizer'
 
-# [[custom_plugins]] # built-in editor
-# repo = 'https://github.com/editorconfig/editorconfig-vim'
-
 [[custom_plugins]]
 repo = 'https://github.com/xu-cheng/brew.vim'
 
 [[custom_plugins]]
 repo = 'https://github.com/vimwiki/vimwiki'
-
-# [[custom_plugins]] # built-in editor
-# repo = 'https://github.com/godlygeek/tabular'
-
-# [[custom_plugins]]
-# repo = 'https://github.com/AndrewRadev/splitjoin.vim'
 
 [[custom_plugins]]
 repo = 'https://github.com/matze/vim-move'
@@ -315,17 +306,11 @@ repo = 'https://github.com/vim-scripts/betterga'
 [[custom_plugins]]
 repo = 'https://github.com/tpope/vim-abolish'
 
-# [[custom_plugins]] # built-in tools
-# repo = 'https://github.com/tpope/vim-scriptease'
-
 [[custom_plugins]]
 repo = 'https://github.com/tpope/vim-sensible'
 
-# [[custom_plugins]]
-# repo = 'https://github.com/tpope/vim-speeddating'
-
-# [[custom_plugins]] # built-in editor
-# repo = 'https://github.com/tpope/vim-repeat'
+[[custom_plugins]]
+repo = 'https://github.com/tpope/vim-speeddating'
 
 [[custom_plugins]]
 repo = 'https://github.com/tpope/vim-fugitive'
@@ -335,9 +320,6 @@ repo = 'https://github.com/tpope/vim-rhubarb'
 
 [[custom_plugins]]
 repo = 'https://github.com/rhysd/committia.vim'
-
-# [[custom_plugins]] # built-in edit
-# repo = 'https://github.com/simnalamburt/vim-mundo'
 
 [[custom_plugins]]
 repo = 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
@@ -351,19 +333,12 @@ repo = 'https://github.com/liuchengxu/vista.vim'
 [[custom_plugins]]
 repo = 'https://github.com/scrooloose/syntastic'
 
-# [[custom_plugins]] # built-in git
-# repo = 'https://github.com/airblade/vim-gitgutter'
-
 [[custom_plugins]]
 # A git commit browser in Vim
 repo = 'https://github.com/junegunn/gv.vim'
 
 # [[custom_plugins]]
 # repo = 'https://github.com/sheerun/vim-polyglot'
-
-# [[custom_plugins]] # built-in incsearch
-# :substitute preview
-# repo = 'https://github.com/osyo-manga/vim-over'
 
 [[custom_plugins]]
 repo = 'https://github.com/vim-scripts/DrawIt'
@@ -389,11 +364,11 @@ repo = 'https://github.com/mzlogin/vim-markdown-toc'
 # [[custom_plugins]]
 # repo = 'https://github.com/khzaw/vim-conceal'
 
-# [[custom_plugins]] # built-in core
-# repo = 'https://github.com/Shougo/vimproc.vim'
-
 [[custom_plugins]]
 repo = 'https://github.com/mg979/vim-visual-multi'
+
+[[custom_plugins]] # built-in tools but Callendar is not available
+repo = 'https://github.com/itchyny/calendar.vim'
 
 # [[custom_plugins]]
 # repo = 'https://github.com/wellle/context.vim'
@@ -401,7 +376,32 @@ repo = 'https://github.com/mg979/vim-visual-multi'
 # [[custom_plugins]]
 # repo = 'https://github.com/Shougo/echodoc.vim'
 
-[[custom_plugins]]
-# built-in tools
-repo = 'https://github.com/itchyny/calendar.vim'
+# [[custom_plugins]] # built-in tools
+# repo = 'https://github.com/tpope/vim-scriptease'
+
+# [[custom_plugins]] # built-in core
+# repo = 'https://github.com/Shougo/vimproc.vim'
+
+# [[custom_plugins]] # built-in editor
+# repo = 'https://github.com/editorconfig/editorconfig-vim'
+
+# [[custom_plugins]] # built-in editor
+# repo = 'https://github.com/godlygeek/tabular'
+
+# [[custom_plugins]] # built-in edit
+# repo = 'https://github.com/AndrewRadev/splitjoin.vim'
+
+# [[custom_plugins]] # built-in editor
+# repo = 'https://github.com/tpope/vim-repeat'
+
+# [[custom_plugins]] # built-in edit
+# repo = 'https://github.com/simnalamburt/vim-mundo'
+
+# [[custom_plugins]] # built-in git
+# repo = 'https://github.com/airblade/vim-gitgutter'
+
+# [[custom_plugins]] # built-in incsearch
+# :substitute preview
+# repo = 'https://github.com/osyo-manga/vim-over'
+
 #}}}
