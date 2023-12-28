@@ -31,8 +31,8 @@ vimcompatible = false
 buffer_index_type = 0
 colorscheme = 'gruvbox'
 colorscheme_bg = 'dark'
-# default_indent = 4
-disabled_plugins = ['tagbar', 'indentLine' ]
+default_indent = 4
+disabled_plugins = ['tagbar', 'splitjoin.vim']
 enable_guicolors = true
 enable_statusline_mode = true
 enable_tabline_filetype_icon = true
@@ -76,43 +76,43 @@ autocomplete_method = 'completor' # działa
 #}}}
 
 #{{{ layers
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/autocomplete/
 # enabled by default
-name = 'autocomplete'
-auto_completion_return_key_behavior = 'smart'
-auto_completion_tab_key_behavior = 'smart'
+# name = 'autocomplete'
+# auto_completion_return_key_behavior = 'smart'
+# auto_completion_tab_key_behavior = 'smart'
 
-[[layers]]
+# [[layers]]
 # enabled by default
 # https://spacevim.org/layers/checkers/
-name = 'checkers'
-show_cursor_error = true
+# name = 'checkers'
+# show_cursor_error = true
 
 # [[layers]]
 # https://spacevim.org/layers/colorscheme/
 # name = 'colorscheme'
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/core/banner/
 # enabled by default
-name = 'core#banner'
+# name = 'core#banner'
 
-[[layers]]
+# [[layers]]
 # disabled by default
-name = 'core#statuscolumn'
-enable = true
+# name = 'core#statuscolumn'
+# enable = true
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/core/statusline/
 # enabled by default
-name = 'core#statusline'
-major_mode_cache = false
+# name = 'core#statusline'
+# major_mode_cache = false
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/core/tabline/
 # enabled by default
-name = 'core#tabline'
+# name = 'core#tabline'
 
 [[layers]]
 # https://spacevim.org/layers/core/
@@ -123,38 +123,38 @@ enable_filetree_gitstatus = true
 enable_smooth_scrolling = false
 filetree_show_hidden = true
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/cscope/
-name = 'cscope'
+# name = 'cscope'
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/ctrlspace/
-name = "ctrlspace"
-enable-spacevim-styled-keys = true
+# name = "ctrlspace"
+# enable-spacevim-styled-keys = true
 
 # [[layers]]
 # https://spacevim.org/layers/debug/
 # name = "debug"
 # debugger_plugin = "vimspector"
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/default/
-name = "default"
+# name = "default"
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/edit/
 # enabled by default
-name = 'edit'
+# name = 'edit'
 # autosave_timeout = 300000
 
 # [[layers]]
 # https://spacevim.org/layers/foldsearch/
 # name = 'foldsearch'
 
-[[layers]]
+# [[layers]]
 # enabled by default
 # https://spacevim.org/layers/format/
-name = 'format'
+# name = 'format'
 
 [[layers]]
 # https://spacevim.org/layers/fzf/
@@ -171,9 +171,9 @@ name = 'git'
 # https://spacevim.org/layers/github/
 # name = 'github'
 
-[[layers]]
+# [[layers]]
 # [SPC g 2]
-name = 'games'
+# name = 'games'
 
 [[layers]]
 # https://spacevim.org/layers/gtags/
@@ -184,8 +184,8 @@ auto_update = true
 open_quickfix = 1
 # gtagslabel = 'pygments'
 
-[[layers]]
-name = 'incsearch'
+# [[layers]]
+# name = 'incsearch'
 
 #{{{2 langs
 [[layers]]
@@ -230,6 +230,7 @@ name = "lang#xml"
 
 [[layers]]
 # https://spacevim.org/layers/shell/
+# Spc '
 name = 'shell'
 default_height = 30
 default_position = 'bottom'
@@ -246,162 +247,211 @@ name = "tools"
 # https://spacevim.org/layers/ui/
 # enabled by default
 name = 'ui'
-enable_cursorword = true
+enable_cursorword = false
 enable_indentline = false
 enable_scrollbar = false
 enable_sidebar = true
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/unite/
-name = 'unite'
+# name = 'unite'
 
-[[layers]]
+# [[layers]]
 # https://spacevim.org/layers/VersionControl/
-name = 'VersionControl'
+# name = 'VersionControl'
 #}}}
 
 #{{{ custom plugins
 [[custom_plugins]]
+# A Vim plugin to colorize all text in the form #rrggbb or #rgb.
 repo = 'https://github.com/lilydjwg/colorizer'
 
 [[custom_plugins]]
+# 🍺 Vim Syntax for Homebrew formulae
 repo = 'https://github.com/xu-cheng/brew.vim'
 
 [[custom_plugins]]
+# Personal Wiki for Vim
 repo = 'https://github.com/vimwiki/vimwiki'
 
 [[custom_plugins]]
+# Plugin to move lines and selections up and down
 repo = 'https://github.com/matze/vim-move'
 
 [[custom_plugins]]
+# A new menu, like IE's Favourites, or Netscape's Bookmark
 repo = 'https://github.com/vim-scripts/FavMenu.vim'
 
 [[custom_plugins]]
+# Favorite file and directory explorer
 repo = 'https://github.com/vim-scripts/FavEx'
 
-[[custom_plugins]]
-repo = 'https://github.com/rhysd/vim-healthcheck'
+[[custom_plugins]] # built-in edit but broken
+# Switch between single-line and multiline forms of code
+repo = 'https://github.com/AndrewRadev/splitjoin.vim'
 
 [[custom_plugins]]
-repo = 'https://github.com/vim-scripts/groovy.vim'
-
-[[custom_plugins]]
+# 📡 Blazing fast minimap / scrollbar for vim, powered by code-minimap written in Rust.
 repo = 'https://github.com/wfxr/minimap.vim'
 
 [[custom_plugins]]
+# basic vim/terraform integration
 repo = 'https://github.com/hashivim/vim-terraform'
 
 [[custom_plugins]]
+# BASH IDE -- Write and run BASH-scripts using menus and hotkeys.
 repo = 'https://github.com/vim-scripts/bash-support.vim'
 
 [[custom_plugins]]
+# Syntax highlighting for Bats - Bash Automated Testing System
 repo = 'https://github.com/vim-scripts/bats.vim'
 
 [[custom_plugins]]
+# Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
 repo = 'https://github.com/vim-scripts/taglist.vim'
 
 [[custom_plugins]]
+# Yet another :ascii command
 repo = 'https://github.com/vim-scripts/betterga'
 
 [[custom_plugins]]
+# abolish.vim: Work with several variants of a word at once
 repo = 'https://github.com/tpope/vim-abolish'
 
-[[custom_plugins]]
-repo = 'https://github.com/tpope/vim-sensible'
+# [[custom_plugins]]
+# sensible.vim: Defaults everyone can agree on
+# repo = 'https://github.com/tpope/vim-sensible'
 
 [[custom_plugins]]
+# use CTRL-A/CTRL-X to increment dates, times, and more
 repo = 'https://github.com/tpope/vim-speeddating'
 
 [[custom_plugins]]
+# A Git wrapper so awesome, it should be illegal
 repo = 'https://github.com/tpope/vim-fugitive'
 
-[[custom_plugins]]
-repo = 'https://github.com/tpope/vim-rhubarb'
+# [[custom_plugins]]
+# GitHub extension for fugitive.vim
+# repo = 'https://github.com/tpope/vim-rhubarb'
 
 [[custom_plugins]]
+#  A Vim plugin for more pleasant editing on commit messages
 repo = 'https://github.com/rhysd/committia.vim'
 
 [[custom_plugins]]
+# Extra syntax and highlight for nerdtree files
+# requires vim-devicons
 repo = 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
 
 [[custom_plugins]]
+# easy work with ArchLinux PKGBUILD
 repo = 'https://github.com/dracorp/vim-pkgbuild'
 
 [[custom_plugins]]
+# 🌵 Viewer & Finder for LSP symbols and tags
 repo = 'https://github.com/liuchengxu/vista.vim'
 
 [[custom_plugins]]
+#  Syntax checking hacks for vim
 repo = 'https://github.com/scrooloose/syntastic'
 
 [[custom_plugins]]
 # A git commit browser in Vim
 repo = 'https://github.com/junegunn/gv.vim'
 
-# [[custom_plugins]]
-# repo = 'https://github.com/sheerun/vim-polyglot'
-
 [[custom_plugins]]
+# Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
 repo = 'https://github.com/vim-scripts/DrawIt'
 on_cmd = ['DrawIt']
 
 [[custom_plugins]]
+# vim-snipmate default snippets (Previously snipmate-snippets)
 repo = 'https://github.com/honza/vim-snippets'
 
 [[custom_plugins]]
+# A vim 7.4+ plugin to generate table of contents for Markdown files.
 repo = 'https://github.com/mzlogin/vim-markdown-toc'
 
-# [[custom_plugins]]
-# repo = 'https://github.com/instant-markdown/vim-instant-markdown'
-
-# [[custom_plugins]]
-#   repo = 'https://github.com/xolox/vim-misc'
-# [[custom_plugins]]
-#   repo = 'https://github.com/xolox/vim-easytags'
-
-# [[custom_plugins]]
-# repo = 'https://github.com/ryanoasis/vim-devicons'
-
-# [[custom_plugins]]
-# repo = 'https://github.com/khzaw/vim-conceal'
-
 [[custom_plugins]]
+# Multiple cursors plugin for vim/neovim
 repo = 'https://github.com/mg979/vim-visual-multi'
 
 [[custom_plugins]] # built-in tools but Callendar is not available
+# A calendar application for Vim
 repo = 'https://github.com/itchyny/calendar.vim'
 
+[[custom_plugins]]
+# Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
+repo = 'https://github.com/ryanoasis/vim-devicons'
+
+[[custom_plugins]]
+# Miscellaneous auto-load Vim scripts
+repo = 'https://github.com/xolox/vim-misc'
+[[custom_plugins]]
+# Automated tag file generation and syntax highlighting of tags in Vim
+repo = 'https://github.com/xolox/vim-easytags'
+
+# Disabled plugins {{{
 # [[custom_plugins]]
+# Polyfill of Neovim's health-check for Vim
+# repo = 'https://github.com/rhysd/vim-healthcheck'
+
+# [[custom_plugins]]
+# A solid language pack for Vim
+# repo = 'https://github.com/sheerun/vim-polyglot'
+
+# [[custom_plugins]]
+# Instant Markdown previews from Vim
+# repo = 'https://github.com/instant-markdown/vim-instant-markdown'
+
+# [[custom_plugins]]
+# A vim plugin making use of vim's conceal feature for additional visual eyecandy.
+# repo = 'https://github.com/khzaw/vim-conceal'
+
+# [[custom_plugins]]
+# Vim plugin that shows the context of the currently visible buffer contents
 # repo = 'https://github.com/wellle/context.vim'
 
 # [[custom_plugins]]
+# Print documents in echo area
 # repo = 'https://github.com/Shougo/echodoc.vim'
 
+# }}}
+# Disabled plugins built-in {{{
+# [[custom_plugins]] # built-in groovy
+# syntax file for the groovy programming language
+# repo = 'https://github.com/vim-scripts/groovy.vim'
+
 # [[custom_plugins]] # built-in tools
+# scriptease.vim: A Vim plugin for Vim plugins
 # repo = 'https://github.com/tpope/vim-scriptease'
 
 # [[custom_plugins]] # built-in core
+# Interactive command execution in Vim.
 # repo = 'https://github.com/Shougo/vimproc.vim'
 
 # [[custom_plugins]] # built-in editor
+# EditorConfig plugin for Vim
 # repo = 'https://github.com/editorconfig/editorconfig-vim'
 
 # [[custom_plugins]] # built-in editor
+# Vim script for text filtering and alignment
 # repo = 'https://github.com/godlygeek/tabular'
 
-# [[custom_plugins]] # built-in edit
-# repo = 'https://github.com/AndrewRadev/splitjoin.vim'
-
 # [[custom_plugins]] # built-in editor
+# enable repeating supported plugin maps with "."
 # repo = 'https://github.com/tpope/vim-repeat'
 
 # [[custom_plugins]] # built-in edit
+# 🎄 Vim undo tree visualizer
 # repo = 'https://github.com/simnalamburt/vim-mundo'
 
 # [[custom_plugins]] # built-in git
+# A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
 # repo = 'https://github.com/airblade/vim-gitgutter'
 
 # [[custom_plugins]] # built-in incsearch
 # :substitute preview
 # repo = 'https://github.com/osyo-manga/vim-over'
-
+# }}}
 #}}}

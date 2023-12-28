@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-function! myspacevim#before() abort
+function! myspacevim#before() abort "{{{
     let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
     let g:MSWIN64 = has('win64')
     let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
@@ -15,7 +15,7 @@ function! myspacevim#before() abort
     let g:OS      = substitute(system('uname'), '\n', '', '')
     " for plugin.vim
     let g:pluginIsEnabledVerbose = 0
-    let g:bundle_dir = g:spacevim_plugin_bundle_dir . 'repos/github.com'
+    " let g:bundle_dir = g:spacevim_plugin_bundle_dir . 'repos/github.com'
     " for loading configuration from files
     let $VIM_HOME=$HOME.'/.SpaceVim.d'
 
@@ -116,9 +116,9 @@ function! myspacevim#before() abort
 
     " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
     let g:polyglot_disabled = ['csv', 'jenkins', 'yaml']
-endfunction
+endfunction "}}}
 
-function! myspacevim#after() abort
+function! myspacevim#after() abort "{{{
     unmap <
     unmap >
 "" Theme: Gruvbox {{{
@@ -133,7 +133,8 @@ function! myspacevim#after() abort
     " Inverts indent guides
     let g:gruvbox_invert_indent_guides=0
 "" }}}
-"" Plugin: vimwiki
+
+"" Plugin: vimwiki {{{
     let g:vimwiki_list = [
                 \ {'path': '~/Documents/vimwiki', 'ext': '.wiki'},
                 \ {'path': '~/Projects/Projects-other/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'},
@@ -161,7 +162,7 @@ function! myspacevim#after() abort
     nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
 "" }}}
 
-    " bash-support
+"" Plugin: bash-support {{{
     if plugin#isEnabled('vim-scripts/bash-support.vim')
         if g:UNIX
             let g:BASH_LocalTemplateFile = expand('$VIM_HOME/templates/bash-support/templates/Templates')
@@ -174,10 +175,13 @@ function! myspacevim#after() abort
             endif
         endif
     endif
-    " vim-mundo
+"" }}}
+
+"" Plugin: vim-mundo {{{
     if plugin#isEnabled('simnalamburt/vim-mundo')
         nnoremap <F5> :MundoToggle<cr>
     endif
+"" }}}
 
 "" Plugin: nerd-commenter {{{
     " Add spaces after comment delimiters by default
@@ -199,7 +203,6 @@ function! myspacevim#after() abort
     \ }
 "" }}}
 
-"" Explore filesystem with Vim
 "" Plugin: NERDTree {{{
     let NERDTreeShowHidden=1
 "" }}}
@@ -253,7 +256,6 @@ function! myspacevim#after() abort
     inoremap <silent> <S-F12>  <C-C>:Vista!!<CR>
 "" }}}
 
-"" Browse Github events in Vim
 "" Plugin: Github Dashboard {{{
     "" GitHub Public
     let g:github_dashboard={}
@@ -271,6 +273,7 @@ function! myspacevim#after() abort
     " let g:github_dashboard#private['api_endpoint']='https://github.private.com/api/v3'
     " let g:github_dashboard#private['web_endpoint']='https://github.private.com'
 "" }}}
+
 "" Plugin: Colorizer {{{
   " Method to highlight
   let g:Hexokinase_highlighters=['backgroundfull']
@@ -286,7 +289,6 @@ function! myspacevim#after() abort
   \ ]
 "" }}}
 
-"" Bringing Sublime Text's awesome multiple selection feature into Vim
 "" Plugin: Vim Multiple Cursors {{{
   " Turn off the default key bindings
   let g:multi_cursor_use_default_mapping=0
@@ -301,7 +303,6 @@ function! myspacevim#after() abort
   let g:multi_cursor_exit_from_insert_mode=0
 "" }}}
 
-"" For intensely orgasmic commenting
 "" Plugin: NERD Commenter {{{
   " Comment the whole lines in visual mode
   let g:NERDCommentWholeLinesInVMode=1
@@ -315,7 +316,6 @@ function! myspacevim#after() abort
   let g:NERDTrimTrailingWhitespace=1
 "" }}}
 
-"" Show the context of the currently visible buffer contents
 "" Plugin: Context {{{
   " Whether to enable the context plugin
   let g:context_enabled=1
@@ -323,7 +323,7 @@ function! myspacevim#after() abort
   let g:context_nvim_no_redraw=1
 " }}}
 
-""" Config Plugins {{{
+"" Additional Configs {{{
   " Configurations for plugins to load into Vim
   let plugin_configurations=[
   \ 'mappings.vim',
@@ -338,6 +338,6 @@ function! myspacevim#after() abort
     if filereadable(expand('~/.config/vim/local.vim'))
         source ~/.config/vim/local.vim
     endif
-""" }}}
+"" }}}
 
-endfunction
+endfunction "}}}
