@@ -68,7 +68,7 @@ function! myspacevim#before() abort
         set foldcolumn=0                            " add a fold column
         set foldmethod=marker                       " detect triple-{ style fold marker
         " set foldmarker={{{,}}}
-        set foldlevelstart=1                      " start out with everything unfolded                                                                                             ▼
+        set foldlevelstart=1                      " start out with everything unfolded
         " Don't open folds when search into them
         set foldopen-=search
         " Don't open folds when undo stuff
@@ -76,21 +76,24 @@ function! myspacevim#before() abort
     endif
 
     set diffopt+=iwhite
-    if has("patch-8.1.0360")
+    if has('patch-8.1.0360')
         set diffopt+=indent-heuristic
         set diffopt+=internal,algorithm:patience
     endif
 
-    if g:MSWIN64 && has("gui_running")
-        au GUIEnter * simalt ~x
+    if g:MSWIN64 && has('gui_running')
+        augroup WIN
+            au!
+            au GUIEnter * simalt ~x
+        augroup END
     else
         " Maximize GVim on start
-        if has("gui_running")
+        if has('gui_running')
             set lines=999 columns=999
         endif
     endif
 
-    if has("gui_running")
+    if has('gui_running')
         set guioptions+=t                           " include tearoff menu items
         set guioptions-=T                           " exclude Toolbar
         if g:MSWIN
@@ -161,8 +164,8 @@ function! myspacevim#after() abort
     " bash-support
     if plugin#isEnabled('vim-scripts/bash-support.vim')
         if g:UNIX
-            let g:BASH_LocalTemplateFile = expand("$VIM_HOME/templates/bash-support/templates/Templates")
-            let g:BASH_CodeSnippets      = expand("$VIM_HOME/templates/bash-support/codesnippets")
+            let g:BASH_LocalTemplateFile = expand('$VIM_HOME/templates/bash-support/templates/Templates')
+            let g:BASH_CodeSnippets      = expand('$VIM_HOME/templates/bash-support/codesnippets')
             let g:BASH_GuiSnippetBrowser = 'commandline'
             if g:MACOS
                 let g:BASH_Executable       = '/usr/local/bin/bash'
@@ -332,7 +335,7 @@ function! myspacevim#after() abort
             execute 'source ' . config_path
         endif
     endfor
-    if filereadable(expand("~/.config/vim/local.vim"))
+    if filereadable(expand('~/.config/vim/local.vim'))
         source ~/.config/vim/local.vim
     endif
 """ }}}
