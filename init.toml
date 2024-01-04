@@ -4,9 +4,9 @@
 # =============================================================================
 
 [options] #{{{
-automatic_update = true
-statusline_separator = 'arrow'
-statusline_iseparator = 'bar'
+# automatic_update = true
+# statusline_separator = 'arrow'
+# statusline_iseparator = 'bar'
 statusline_left = [
   'winnr',
   'filename',
@@ -27,33 +27,32 @@ statusline_right = [
 # windows_smartclose = ''
 # in vimcompatible mode, all the differences above will disappear
 # windows_leader = 's'
-vimcompatible = false
-buffer_index_type = 0
-colorscheme = 'gruvbox'
-colorscheme_bg = 'dark'
-default_indent = 4
-disabled_plugins = ['tagbar', 'splitjoin.vim']
-enable_guicolors = true
-enable_statusline_mode = true
-enable_tabline_filetype_icon = true
-# default is vimfiler
-filemanager = 'nerdtree'
+vimcompatible = 0
+# buffer_index_type = 0
+# colorscheme = 'gruvbox'
+# colorscheme_bg = 'dark'
+# default_indent = 4
+disabled_plugins = ['splitjoin.vim']
+enable_guicolors = 1
+# enable_statusline_mode = true
+# enable_tabline_filetype_icon = true
+# default is nerdtree
+# filemanager = 'nerdtree'
+# filemanager = 'vimfiler'
 # works only in nvim
 # filemanager = 'defx'
 # enable_vimfiler_gitstatus = true
 filetree_direction = "left"
-enable_vimfiler_welcome = true
+# enable_vimfiler_welcome = true
 guifont = 'AgaveNF-Regular:h15'
+# escape_key_binding = ''
 
-# ~/.SpaceVim.d/autoload/myspacevim.vim
-bootstrap_after = 'myspacevim#after'
-bootstrap_before = 'myspacevim#before'
 
 # options for non-project files/directories
 project_non_root = 'current'
 # project_rooter_patterns = ['.git/', '!node_packages/']
-# project_rooter_outermost = true
-# project_auto_root = false
+# project_rooter_outermost = 1
+project_auto_root = 0
 
 # autocomplete_method = 'neocomplete' # nie dziala
 # autocomplete_method = 'neocomplcache'  # dziala
@@ -66,13 +65,18 @@ autocomplete_method = 'completor' # działa
 # snippet_engine = 'neosnippet' # default
 # snippet_engine = 'ultisnips'
 
-# checkers
+# checkers, default neomake
 # lint_engine = 'neomake'
 # lint_engine = 'ale'
 # lint_engine = 'syntastic'
 # lint_on_the_fly = true
 # open_error_list = 2
 # enable_googlesuggest = 1
+vim_help_language = 'pl'
+
+# ~/.SpaceVim.d/autoload/myspacevim.vim
+bootstrap_before = 'myspacevim#before'
+bootstrap_after = 'myspacevim#after'
 #}}}
 
 #{{{ layers
@@ -89,9 +93,8 @@ autocomplete_method = 'completor' # działa
 # name = 'checkers'
 # show_cursor_error = true
 
-# [[layers]]
-# https://spacevim.org/layers/colorscheme/
-# name = 'colorscheme'
+[[layers]]
+name = 'colorscheme'
 
 # [[layers]]
 # https://spacevim.org/layers/core/banner/
@@ -123,9 +126,11 @@ enable_filetree_gitstatus = true
 enable_smooth_scrolling = false
 filetree_show_hidden = true
 
-# [[layers]]
+[[layers]]
 # https://spacevim.org/layers/cscope/
-# name = 'cscope'
+name = 'cscope'
+auto_update = 1
+open_location = 1
 
 # [[layers]]
 # https://spacevim.org/layers/ctrlspace/
@@ -390,6 +395,9 @@ repo = 'https://github.com/xolox/vim-misc'
 [[custom_plugins]]
 # Automated tag file generation and syntax highlighting of tags in Vim
 repo = 'https://github.com/xolox/vim-easytags'
+
+[[custom_plugins]]
+repo = 'https://github.com/xolox/vim-colorscheme-switcher'
 
 # Disabled plugins {{{
 # [[custom_plugins]]

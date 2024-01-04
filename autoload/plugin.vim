@@ -2,19 +2,17 @@
 " There is side efect with on-demand loading on both conditions
 
 if exists('g:loaded_plugin')
-  finish
+    finish
 endif
 let g:loaded_plugin = 1
 
-let s:cpo_save = &cpo
-set cpo&vim
+let s:cpoptions_save = &cpoptions
+set cpoptions&vim
 
 if exists('g:pluginIsEnabledDirectory')
     let s:pluginIsEnabledDirectory = g:pluginIsEnabledDirectory
-elseif exists('g:bundle_dir')
-    let s:pluginIsEnabledDirectory = g:bundle_dir
 else
-    echoerr('The variable neither g:bundle_dir nor g:pluginIsEnabledDirectory is not defined')
+    echoerr('The variable g:pluginIsEnabledDirectory is not defined')
 endif
 
 if exists('g:pluginIsEnabledVerbose')
@@ -75,5 +73,5 @@ function! plugin#isEnabled(directory, ...) abort
     endif
 endfunction
 
-let &cpo = s:cpo_save
-unlet s:cpo_save
+let &cpoptions = s:cpoptions_save
+unlet s:cpoptions_save
