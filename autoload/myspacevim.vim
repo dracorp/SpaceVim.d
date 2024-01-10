@@ -14,8 +14,8 @@ function! myspacevim#before() abort "{{{
     " pip3 install neovim --upgrade
     let g:OS      = substitute(system('uname'), '\n', '', '')
     " for plugin.vim
-    let g:pluginIsEnabledVerbose = 0
-    let g:pluginIsEnabledDirectory = g:spacevim_plugin_bundle_dir . 'repos/github.com'
+    " let g:pluginIsEnabledVerbose = 0
+    " let g:pluginIsEnabledDirectory = g:spacevim_plugin_bundle_dir . 'repos/github.com'
     " for loading configuration from files
     let $VIM_HOME=$HOME.'/.SpaceVim.d'
 
@@ -63,7 +63,7 @@ function! myspacevim#before() abort "{{{
     set noswapfile                  " do not write annoying intermediate swap files
     set nobackup                    " do not keep backup files, it's 70's style cluttering
 
-    if has('folding')
+    if has('folding') "{{{
         set foldenable                              " enable folding
         set foldcolumn=0                            " add a fold column
         set foldmethod=marker                       " detect triple-{ style fold marker
@@ -81,7 +81,7 @@ function! myspacevim#before() abort "{{{
         nnoremap z3 :set foldlevel=3<cr>
         nnoremap z4 :set foldlevel=4<cr>
         nnoremap z5 :set foldlevel=5<cr>
-    endif
+    endif "}}}
 
     set diffopt+=iwhite
     if has('patch-8.1.0360')
@@ -101,7 +101,7 @@ function! myspacevim#before() abort "{{{
         endif
     endif
 
-    if has('gui_running')
+    if has('gui_running') "{{{
         set guioptions+=t                           " include tearoff menu items
         set guioptions-=T                           " exclude Toolbar
         if g:MSWIN
@@ -116,11 +116,19 @@ function! myspacevim#before() abort "{{{
             set guifont=Iosevka\ Semi-Bold\ 12
             set guifont=JetBrains\ Mono\ 12
         endif
-    endif
+    endif "}}}
+
     set list
     set wrap
     " Add empty newlines at the end of files
     set endofline
+    set browsedir=current " which directory to use for the file browser
+
+    augroup change_dir "{{{
+        au!
+        " The current directory is the directory of the file in the current window.
+        au BufEnter * :lchdir %:p:h
+    augroup END "}}}
 
     " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
     let g:polyglot_disabled = ['csv', 'jenkins', 'yaml']
@@ -172,7 +180,7 @@ function! myspacevim#after() abort "{{{
 "" }}}
 
 "" Plugin: bash-support {{{
-    if plugin#isEnabled('vim-scripts/bash-support.vim')
+    " if plugin#isEnabled('vim-scripts/bash-support.vim')
         if g:UNIX
             let g:BASH_LocalTemplateFile = expand('$VIM_HOME/templates/bash-support/templates/Templates')
             let g:BASH_CodeSnippets      = expand('$VIM_HOME/templates/bash-support/codesnippets')
@@ -183,13 +191,13 @@ function! myspacevim#after() abort "{{{
                 let g:BASH_Executable       = '/usr/bin/bash'
             endif
         endif
-    endif
+    " endif
 "" }}}
 
 "" Plugin: vim-mundo {{{
-    if plugin#isEnabled('simnalamburt/vim-mundo')
+    " if plugin#isEnabled('simnalamburt/vim-mundo')
         nnoremap <F5> :MundoToggle<cr>
-    endif
+    " endif
 "" }}}
 
 "" Plugin: nerd-commenter {{{
@@ -225,15 +233,15 @@ function! myspacevim#after() abort "{{{
 "" }}}
 
 "" Plugin: perl-support.vim {{{
-    if plugin#isEnabled('vim-scripts/perl-support.vim')
+    " if plugin#isEnabled('vim-scripts/perl-support.vim')
         let g:Perl_PerlcriticSeverity  = 1
         let g:Perl_PerlcriticVerbosity = 9
         let g:Perl_PodcheckerWarnings  = 'yes'
-    endif
+    " endif
 "" }}}
 
 "" Plugin: taglist.vim {{{
-    if plugin#isEnabled('vim-scripts/taglist.vim')
+    " if plugin#isEnabled('vim-scripts/taglist.vim')
         noremap <silent> <S-F11>       :TlistToggle<CR>
         inoremap <silent> <S-F11>  <C-C>:TlistToggle<CR>
         let tlist_perl_settings = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
@@ -257,7 +265,7 @@ function! myspacevim#after() abort "{{{
         let Tlist_Display_Tag_Scope=1
         " show TagList window on the left
         let Tlist_Use_Left_Window=1
-    endif
+    " endif
 "" }}}
 
 "" Plugin: Vista {{{

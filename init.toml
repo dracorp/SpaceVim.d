@@ -27,7 +27,7 @@ statusline_right = [
 # windows_smartclose = ''
 # in vimcompatible mode, all the differences above will disappear
 # windows_leader = 's'
-vimcompatible = 0
+vimcompatible = false
 # buffer_index_type = 0
 # colorscheme = 'gruvbox'
 # colorscheme_bg = 'dark'
@@ -42,17 +42,17 @@ enable_guicolors = 1
 # works only in nvim
 # filemanager = 'defx'
 # enable_vimfiler_gitstatus = true
-filetree_direction = "left"
+filetree_direction = 'left'
 # enable_vimfiler_welcome = true
 guifont = 'AgaveNF-Regular:h15'
-# escape_key_binding = ''
+escape_key_binding = ''
 
 
 # options for non-project files/directories
 project_non_root = 'current'
 # project_rooter_patterns = ['.git/', '!node_packages/']
 # project_rooter_outermost = 1
-project_auto_root = 0
+project_auto_root = false
 
 # autocomplete_method = 'neocomplete' # nie dziala
 # autocomplete_method = 'neocomplcache'  # dziala
@@ -69,8 +69,7 @@ autocomplete_method = 'completor' # działa
 # lint_engine = 'neomake'
 # lint_engine = 'ale'
 # lint_engine = 'syntastic'
-# lint_on_the_fly = true
-# open_error_list = 2
+
 # enable_googlesuggest = 1
 vim_help_language = 'pl'
 
@@ -87,11 +86,13 @@ bootstrap_after = 'myspacevim#after'
 # auto_completion_return_key_behavior = 'smart'
 # auto_completion_tab_key_behavior = 'smart'
 
-# [[layers]]
 # enabled by default
 # https://spacevim.org/layers/checkers/
-# name = 'checkers'
-# show_cursor_error = true
+[[layers]]
+name = 'checkers'
+show_cursor_error = false
+lint_on_the_fly = true
+open_error_list = 0
 
 [[layers]]
 name = 'colorscheme'
@@ -132,19 +133,28 @@ name = 'cscope'
 auto_update = 1
 open_location = 1
 
+# https://spacevim.org/layers/ctrlp/
+# https://spacevim.org/documentation/#fuzzy-finder
+# [[layers]]
+# name = 'ctrlp'
+
 # [[layers]]
 # https://spacevim.org/layers/ctrlspace/
-# name = "ctrlspace"
+# name = 'ctrlspace'
 # enable-spacevim-styled-keys = true
 
 # [[layers]]
 # https://spacevim.org/layers/debug/
-# name = "debug"
-# debugger_plugin = "vimspector"
+# name = 'debug'
+# debugger_plugin = 'vimspector'
 
-# [[layers]]
 # https://spacevim.org/layers/default/
-# name = "default"
+# [[layers]]
+# name = 'default'
+
+# https://spacevim.org/layers/denite/
+# [[layers]]
+# name = 'denite'
 
 # [[layers]]
 # https://spacevim.org/layers/edit/
@@ -161,9 +171,10 @@ open_location = 1
 # https://spacevim.org/layers/format/
 # name = 'format'
 
-[[layers]]
 # https://spacevim.org/layers/fzf/
-name = "fzf"
+# https://spacevim.org/documentation/#fuzzy-finder
+# [[layers]]
+# name = 'fzf'
 
 # [[layers]] # broken
 # name = 'fuzzy'
@@ -197,7 +208,7 @@ open_quickfix = 1
 name = 'lang#dockerfile'
 
 [[layers]]
-name = "lang#groovy"
+name = 'lang#groovy'
 
 [[layers]]
 name = 'lang#html'
@@ -225,13 +236,13 @@ name = 'lang#toml'
 name = 'lang#vim'
 
 [[layers]]
-name = "lang#xml"
+name = 'lang#xml'
 
 #}}}2
 
 # [[layers]]
 # https://spacevim.org/layers/language-server-protocol/
-# name = "lsp"
+# name = 'lsp'
 
 [[layers]]
 # https://spacevim.org/layers/shell/
@@ -242,11 +253,11 @@ default_position = 'bottom'
 
 # [[layers]]
 # https://spacevim.org/layers/sudo/
-# name = "sudo"
+# name = 'sudo'
 
 [[layers]]
 # https://spacevim.org/layers/tools/
-name = "tools"
+name = 'tools'
 
 [[layers]]
 # https://spacevim.org/layers/ui/
@@ -257,13 +268,18 @@ enable_indentline = false
 enable_scrollbar = false
 enable_sidebar = true
 
-# [[layers]]
 # https://spacevim.org/layers/unite/
+# https://spacevim.org/documentation/#fuzzy-finder
+# [[layers]]
 # name = 'unite'
 
 # [[layers]]
 # https://spacevim.org/layers/VersionControl/
 # name = 'VersionControl'
+
+# [[layers]]
+# install vim-terminal
+# name = 'vim'
 #}}}
 
 #{{{ custom plugins
@@ -399,6 +415,17 @@ repo = 'https://github.com/xolox/vim-easytags'
 [[custom_plugins]]
 repo = 'https://github.com/xolox/vim-colorscheme-switcher'
 
+[[custom_plugins]]
+repo = 'https://github.com/Donaldttt/fuzzyy'
+
+[[custom_plugins]]
+repo = 'https://github.com/itspriddle/vim-shellcheck'
+
+# [[custom_plugins]]
+# repo = 'https://github.com/vim-scripts/ManPageView'
+
+[[custom_plugins]]
+repo = 'https://github.com/vim-utils/vim-man'
 # Disabled plugins {{{
 # [[custom_plugins]]
 # Polyfill of Neovim's health-check for Vim
