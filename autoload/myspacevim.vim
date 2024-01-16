@@ -62,7 +62,7 @@ function! myspacevim#before() abort "{{{
     " set wildmode=list:longest,list:full  " show a list when pressing tab and complete
     set noswapfile                  " do not write annoying intermediate swap files
     set nobackup                    " do not keep backup files, it's 70's style cluttering
-
+    set nonumber
     if has('folding') "{{{
         set foldenable                              " enable folding
         set foldcolumn=0                            " add a fold column
@@ -94,11 +94,9 @@ function! myspacevim#before() abort "{{{
             au!
             au GUIEnter * simalt ~x
         augroup END
-    else
+    elseif has('gui_running')
         " Maximize GVim on start
-        if has('gui_running')
-            set lines=999 columns=999
-        endif
+        set lines=999 columns=999
     endif
 
     if has('gui_running') "{{{
@@ -138,18 +136,6 @@ function! myspacevim#after() abort "{{{
     unmap <
     unmap >
     unmap <F2>
-"" Theme: Gruvbox {{{
-    " Set option value to 16 to fallback
-    let g:gruvbox_termcolors=256
-    " Change darkmode contrast. Possible values are `soft`, `medium`, `hard`
-    let g:gruvbox_contrast_dark='medium'
-    " Change lightmode contrast. Possible values are `soft`, `medium`, `hard`
-    let g:gruvbox_contrast_light='hard'
-    " Change cursor background
-    let g:gruvbox_hls_cursor='green'
-    " Inverts indent guides
-    let g:gruvbox_invert_indent_guides=0
-"" }}}
 
 "" Plugin: vimwiki {{{
     let g:vimwiki_list = [
@@ -201,27 +187,20 @@ function! myspacevim#after() abort "{{{
 "" }}}
 
 "" Plugin: nerd-commenter {{{
-    " Add spaces after comment delimiters by default
-    let g:NERDSpaceDelims = 1
-    " Use compact syntax for prettified multi-line comments
-    let g:NERDCompactSexyComs = 1
-    " Align line-wise comment delimiters flush left instead of following code indentation
-    let g:NERDDefaultAlign = 'left'
-    " Set a language to use its alternate delimiters by default
-    let g:NERDAltDelims_java = 1
-    " Allow commenting and inverting empty lines (useful when commenting a region)
-    let g:NERDCommentEmptyLines = 1
-    " Enable trimming of trailing whitespace when uncommenting
-    let g:NERDTrimTrailingWhitespace = 1
-    " Enable NERDCommenterToggle to check all selected lines is commented or not
-    let g:NERDToggleCheckAllLines = 1
-    let g:NERDCustomDelimiters = {
-      \ 'brewfile': { 'left': '#','right': '' }
-    \ }
-"" }}}
-
-"" Plugin: NERDTree {{{
-    let NERDTreeShowHidden=1
+    " " Add spaces after comment delimiters by default
+    " let g:NERDSpaceDelims = 1
+    " " Use compact syntax for prettified multi-line comments
+    " let g:NERDCompactSexyComs = 1
+    " " Align line-wise comment delimiters flush left instead of following code indentation
+    " let g:NERDDefaultAlign = 'left'
+    " " Set a language to use its alternate delimiters by default
+    " let g:NERDAltDelims_java = 1
+    " " Allow commenting and inverting empty lines (useful when commenting a region)
+    " let g:NERDCommentEmptyLines = 1
+    " " Enable trimming of trailing whitespace when uncommenting
+    " let g:NERDTrimTrailingWhitespace = 1
+    " " Enable NERDCommenterToggle to check all selected lines is commented or not
+    " let g:NERDToggleCheckAllLines = 1
 "" }}}
 
 "" Plugin: vim-commentery {{{
@@ -273,24 +252,6 @@ function! myspacevim#after() abort "{{{
     inoremap <silent> <S-F12>  <C-C>:Vista!!<CR>
 "" }}}
 
-"" Plugin: Github Dashboard {{{
-    "" GitHub Public
-    let g:github_dashboard={}
-    let g:github_dashboard['username']='dracorp'
-    " Set shortcut for GitHub Dashboard
-    nnoremap <Leader>ghd :GHDashboard<CR>
-    nnoremap <Leader>gha :GHActivity<CR>
-    nnoremap <Leader>ghD :GHDashboard<space>
-    nnoremap <Leader>ghA :GHActivity<space>
-
-    "" GitHub Enterprise
-    " let g:github_dashboard#private={}
-    " let g:github_dashboard#private['username']='posquit0'
-    " Configure default GitHub endpoints
-    " let g:github_dashboard#private['api_endpoint']='https://github.private.com/api/v3'
-    " let g:github_dashboard#private['web_endpoint']='https://github.private.com'
-"" }}}
-
 "" Plugin: Colorizer {{{
   " Method to highlight
   let g:Hexokinase_highlighters=['backgroundfull']
@@ -321,39 +282,33 @@ function! myspacevim#after() abort "{{{
 "" }}}
 
 "" Plugin: NERD Commenter {{{
-  " Comment the whole lines in visual mode
-  let g:NERDCommentWholeLinesInVMode=1
-  " Add space after the left delimiter and before the right delimiter
-  let g:NERDSpaceDelims=1
-  " Use compact syntax for prettified multi-line comments
-  let g:NERDCompactSexyComs=1
-  " Allow commenting and inverting empty lines (useful when commenting a region)
-  let g:NERDCommentEmptyLines=1
-  " Enable trimming of trailing whitespace when uncommenting
-  let g:NERDTrimTrailingWhitespace=1
+    " Comment the whole lines in visual mode
+    let g:NERDCommentWholeLinesInVMode=1
+    " Add space after the left delimiter and before the right delimiter
+    let g:NERDSpaceDelims=1
+    " Use compact syntax for prettified multi-line comments
+    let g:NERDCompactSexyComs=1
+    " Allow commenting and inverting empty lines (useful when commenting a region)
+    let g:NERDCommentEmptyLines=1
+    " Enable trimming of trailing whitespace when uncommenting
+    let g:NERDTrimTrailingWhitespace=1
+    let g:NERDCustomDelimiters.brewfile = { 'left': '#','right': '' }
 "" }}}
-
-"" Plugin: Context {{{
-  " Whether to enable the context plugin
-  let g:context_enabled=1
-  " INFO: Issue in Neovim which leads to some artefacts
-  let g:context_nvim_no_redraw=1
-" }}}
 
 "" Additional Configs {{{
   " Configurations for plugins to load into Vim
   let plugin_configurations=[
   \ 'functions.vim',
   \ ]
-    for configuration in plugin_configurations
-        let config_path = join([$VIM_HOME, 'autoload', configuration], '/')
-        if filereadable(config_path)
-            execute 'source ' . config_path
-        endif
-    endfor
-    if filereadable(expand('~/.config/vim/local.vim'))
-        source ~/.config/vim/local.vim
-    endif
+    " for configuration in plugin_configurations
+    "     let config_path = join([$VIM_HOME, 'autoload', configuration], '/')
+    "     if filereadable(config_path)
+    "         execute 'source ' . config_path
+    "     endif
+    " endfor
+    " if filereadable(expand('~/.config/vim/local.vim'))
+    "     source ~/.config/vim/local.vim
+    " endif
 "" }}}
 
 "| Recursive | Non-recursive | Unmap    | Modes                            |
@@ -407,8 +362,9 @@ nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
 " nnoremap g* *``
 " nnoremap g# #``
 "}}}
+
 " Turn off hlsearch
-" nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -456,36 +412,10 @@ nnoremap <c-l> viwue
 " vnoremap Q gq
 " nnoremap Q gqap
 
-" map zp :setlocal spell!<CR>
-" imap zP <ESC>:setlocal spell!<CR>i<right>
-
-if g:MACOS
-    " Coping
-    vnoremap <C-Help> "+y
-    " Pasting
-    inoremap <S-Help> "+gP
-    " Cutting
-    vnoremap <C-S-Help> "+x
-endif
-
 " search for visually highlighted text
 "vmap // y/<C-R>"<CR>
 "with spec chars
 vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-
-" autocomplete parenthesis, (brackets) and braces
-"inoremap  (  ()<Left>
-"inoremap  [  []<Left>
-"inoremap  {  {}<Left>
-
-"vnoremap  (  s()<Esc>P<Right>%
-"vnoremap  [  s[]<Esc>P<Right>%
-"vnoremap  {  s{}<Esc>P<Right>%
-
-" autocomplete quotes (visual and select mode)
-"xnoremap  '  s''<Esc>P<Right>
-"xnoremap  "  s""<Esc>P<Right>
-"xnoremap  `  s``<Esc>P<Right>
 
 " Moving cursor to other windows:
 " shift down   : change window focus to lower one (cyclic)
@@ -513,14 +443,4 @@ inoremap <Up> <C-o>gk
 " nnoremap <c-TAB> :tabnext<cr>
 " nnoremap <c-s-TAB> :tabprev<cr>
 
-" Use shift-H and shift-L for move to beginning/end
-" nnoremap H 0
-" nnoremap L $
-"
-" map <ESC>[H <Home>
-" map <ESC>[F <End>
-" imap <ESC>[H <C-O><Home>
-" imap <ESC>[F <C-O><End>
-" cmap <ESC>[H <Home>
-" cmap <ESC>[F <End>
 endfunction "}}}

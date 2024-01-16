@@ -7,21 +7,21 @@
 # automatic_update = true
 # statusline_separator = 'arrow'
 # statusline_iseparator = 'bar'
-statusline_left = [
-  'winnr',
-  'filename',
-  'major mode',
-  'minor mode lighters',
-  'version control info',
-  'search status'
-]
-statusline_right = [
-  'fileformat',
-  'cursorpos',
-  'percentage',
-  'whitespace',
-  'syntax checking'
-]
+# statusline_left = [
+#   'winnr',
+#   'filename',
+#   'major mode',
+#   'minor mode lighters',
+#   'version control info',
+#   'search status'
+# ]
+# statusline_right = [
+#   'fileformat',
+#   'cursorpos',
+#   'percentage',
+#   'whitespace',
+#   'syntax checking'
+# ]
 # right sections of statusline
 # disable 'q' to close current window
 # windows_smartclose = ''
@@ -46,6 +46,7 @@ filetree_direction = 'left'
 # enable_vimfiler_welcome = true
 guifont = 'AgaveNF-Regular:h15'
 escape_key_binding = ''
+relativenumber = false
 
 
 # options for non-project files/directories
@@ -54,14 +55,28 @@ project_non_root = 'current'
 # project_rooter_outermost = 1
 project_auto_root = false
 
-# autocomplete_method = 'neocomplete' # nie dziala
-# autocomplete_method = 'neocomplcache'  # dziala
-# autocomplete_method = 'neocomplete' # nie dziala
-# autocomplete_method = 'deoplete' nie dziala
-# autocomplete_method = 'coc' dziwnie dziala
-# autocomplete_method = 'YouCompleteMe' nie działa
-autocomplete_method = 'completor' # działa
+# Default
 # autocomplete_method = 'asyncomplete' słabo działa
+# asyncomplete-buffer.vim
+# asyncomplete-necovim.vim
+# asyncomplete-omni.vim
+# asyncomplete.vim
+
+# autocomplete_method = 'neocomplete' # nie dziala
+
+# autocomplete_method = 'neocomplcache'  # dziala
+# neocomplcache.vim
+
+# autocomplete_method = 'deoplete' # nie dziala
+
+# autocomplete_method = 'coc' # dziala
+# coc-neco
+
+# autocomplete_method = 'YouCompleteMe' # nie działa
+autocomplete_method = 'completor' # działa
+# completor-neosnippet
+# completor.vim
+
 # snippet_engine = 'neosnippet' # default
 # snippet_engine = 'ultisnips'
 
@@ -71,7 +86,7 @@ autocomplete_method = 'completor' # działa
 # lint_engine = 'syntastic'
 
 # enable_googlesuggest = 1
-vim_help_language = 'pl'
+# vim_help_language = 'pl'
 
 # ~/.SpaceVim.d/autoload/myspacevim.vim
 bootstrap_before = 'myspacevim#before'
@@ -94,57 +109,77 @@ show_cursor_error = false
 lint_on_the_fly = true
 open_error_list = 0
 
-[[layers]]
-name = 'colorscheme'
-
 # [[layers]]
+# name = 'colorscheme'
+# NeoSolarized
+# jellybeans.vim
+# molokai
+# nord-vim
+# onedark.vim
+# palenight.vim
+# srcery-vim
+# vim-hybrid
+# vim-material
+
 # https://spacevim.org/layers/core/banner/
 # enabled by default
+# [[layers]]
 # name = 'core#banner'
 
-# [[layers]]
 # disabled by default
+# [[layers]]
 # name = 'core#statuscolumn'
 # enable = true
 
-# [[layers]]
 # https://spacevim.org/layers/core/statusline/
 # enabled by default
+# [[layers]]
 # name = 'core#statusline'
 # major_mode_cache = false
 
-# [[layers]]
 # https://spacevim.org/layers/core/tabline/
 # enabled by default
+# [[layers]]
 # name = 'core#tabline'
 
-[[layers]]
 # https://spacevim.org/layers/core/
 # enabled by default
+[[layers]]
 name = 'core'
 enable_filetree_filetypeicon = true
 enable_filetree_gitstatus = true
 enable_smooth_scrolling = false
 filetree_show_hidden = true
 
-[[layers]]
 # https://spacevim.org/layers/cscope/
-name = 'cscope'
-auto_update = 1
-open_location = 1
+# [[layers]]
+# name = 'cscope'
+# auto_update = 1
+# open_location = 1
 
 # https://spacevim.org/layers/ctrlp/
 # https://spacevim.org/documentation/#fuzzy-finder
 # [[layers]]
 # name = 'ctrlp'
+# ctrlp-jumps
+# ctrlp-menu
+# ctrlp-py-matcher
+# ctrlp-register
+# ctrlp-yank
+# ctrlp.vim
+# vim-ctrlp-help
+# vim-ctrlp-message
 
-# [[layers]]
 # https://spacevim.org/layers/ctrlspace/
+# vim-ctrlspace
+# [[layers]]
 # name = 'ctrlspace'
 # enable-spacevim-styled-keys = true
 
-# [[layers]]
 # https://spacevim.org/layers/debug/
+# vim-debug
+# vimproc.vim
+# [[layers]]
 # name = 'debug'
 # debugger_plugin = 'vimspector'
 
@@ -153,46 +188,58 @@ open_location = 1
 # name = 'default'
 
 # https://spacevim.org/layers/denite/
+# https://spacevim.org/documentation/#fuzzy-finder
+# Denite-sources
+# denite-gtags
+# denite.nvim
+# unite-location
+# unite-outline
+# vim-denite-emoji
 # [[layers]]
 # name = 'denite'
 
-# [[layers]]
 # https://spacevim.org/layers/edit/
 # enabled by default
+# [[layers]]
 # name = 'edit'
 # autosave_timeout = 300000
 
-# [[layers]]
 # https://spacevim.org/layers/foldsearch/
+# [[layers]]
 # name = 'foldsearch'
 
-# [[layers]]
 # enabled by default
 # https://spacevim.org/layers/format/
+# [[layers]]
 # name = 'format'
 
 # https://spacevim.org/layers/fzf/
 # https://spacevim.org/documentation/#fuzzy-finder
+# fzf
+# fzf-neoyank
 # [[layers]]
 # name = 'fzf'
 
 # [[layers]] # broken
 # name = 'fuzzy'
 
-[[layers]]
 # https://spacevim.org/layers/git/
+# vim-gitgutter
+[[layers]]
 name = 'git'
 
-# [[layers]]
 # https://spacevim.org/layers/github/
+# open-browser-github.vim
+# vim-gista
+# [[layers]]
 # name = 'github'
 
 # [[layers]]
 # [SPC g 2]
 # name = 'games'
 
-[[layers]]
 # https://spacevim.org/layers/gtags/
+[[layers]]
 name = 'gtags'
 gtagslabel = 'ctags'
 # gtagslabel = 'exuberant ctags'
@@ -204,12 +251,21 @@ open_quickfix = 1
 # name = 'incsearch'
 
 #{{{2 langs
+# vim-dockerfile
 [[layers]]
 name = 'lang#dockerfile'
 
+# groovy.vim
 [[layers]]
 name = 'lang#groovy'
 
+# emmet-vim
+# html5.vim
+# scss-syntax.vim
+# vim-css-color
+# vim-css3-syntax
+# vim-less
+# vim-stylus
 [[layers]]
 name = 'lang#html'
 
@@ -217,46 +273,71 @@ name = 'lang#html'
 # breaks md
 #   name = 'lang#markdown'
 
+# json5.vim
+# vim-json
 [[layers]]
 name = 'lang#json'
 
+# perldoc-vim
+# perlomni.vim
+# vim-perl
 [[layers]]
 name = 'lang#perl'
 
+# vim-pydocstring
 [[layers]]
 name = 'lang#python'
 
-[[layers]]
-name = 'lang#sh'
+# deoplete-zsh
+# vim-fish
+# vim-zsh
+# [[layers]]
+# name = 'lang#sh'
 
 [[layers]]
 name = 'lang#toml'
 
+# exception.vim
+# neco-vim
+# vim-vimlint
+# vim-vimlparser
+# vint-syntastic
 [[layers]]
 name = 'lang#vim'
 
-[[layers]]
-name = 'lang#xml'
+# MatchTagAlways
+# xmledit
+# [[layers]]
+# name = 'lang#xml'
 
 #}}}2
 
-# [[layers]]
 # https://spacevim.org/layers/language-server-protocol/
+# [[layers]]
 # name = 'lsp'
 
-[[layers]]
 # https://spacevim.org/layers/shell/
 # Spc '
+# vimshell.vim
+[[layers]]
 name = 'shell'
 default_height = 30
 default_position = 'bottom'
 
-# [[layers]]
 # https://spacevim.org/layers/sudo/
+# [[layers]]
 # name = 'sudo'
 
-[[layers]]
 # https://spacevim.org/layers/tools/
+# Mysql.vim
+# VimCalc3
+# fencview
+# goyo.vim
+# limelight.vim
+# vim-scriptease
+# vimloo
+# vnote
+[[layers]]
 name = 'tools'
 
 [[layers]]
@@ -264,21 +345,26 @@ name = 'tools'
 # enabled by default
 name = 'ui'
 enable_cursorword = false
-enable_indentline = false
+enable_indentline = true
+indentline_char = '⦙'
+conceallevel = 0
+concealcursor = ''
 enable_scrollbar = false
 enable_sidebar = true
 
 # https://spacevim.org/layers/unite/
 # https://spacevim.org/documentation/#fuzzy-finder
+# unite-outline
+# unite-quickfix
 # [[layers]]
 # name = 'unite'
 
-# [[layers]]
 # https://spacevim.org/layers/VersionControl/
-# name = 'VersionControl'
+[[layers]]
+name = 'VersionControl'
 
+# vim-terminal
 # [[layers]]
-# install vim-terminal
 # name = 'vim'
 #}}}
 
@@ -287,150 +373,152 @@ enable_sidebar = true
 # A Vim plugin to colorize all text in the form #rrggbb or #rgb.
 repo = 'https://github.com/lilydjwg/colorizer'
 
-[[custom_plugins]]
 # 🍺 Vim Syntax for Homebrew formulae
+[[custom_plugins]]
 repo = 'https://github.com/xu-cheng/brew.vim'
 
-[[custom_plugins]]
 # Personal Wiki for Vim
+[[custom_plugins]]
 repo = 'https://github.com/vimwiki/vimwiki'
 
-[[custom_plugins]]
 # Plugin to move lines and selections up and down
-repo = 'https://github.com/matze/vim-move'
+# [[custom_plugins]]
+# repo = 'https://github.com/matze/vim-move'
 
-[[custom_plugins]]
 # A new menu, like IE's Favourites, or Netscape's Bookmark
+[[custom_plugins]]
 repo = 'https://github.com/vim-scripts/FavMenu.vim'
 
-[[custom_plugins]]
 # Favorite file and directory explorer
+[[custom_plugins]]
 repo = 'https://github.com/vim-scripts/FavEx'
 
-[[custom_plugins]] # built-in edit but broken
 # Switch between single-line and multiline forms of code
+[[custom_plugins]] # built-in edit but broken
 repo = 'https://github.com/AndrewRadev/splitjoin.vim'
+merged = false
 
-[[custom_plugins]]
 # 📡 Blazing fast minimap / scrollbar for vim, powered by code-minimap written in Rust.
-repo = 'https://github.com/wfxr/minimap.vim'
+# [[custom_plugins]]
+# repo = 'https://github.com/wfxr/minimap.vim'
 
-[[custom_plugins]]
 # basic vim/terraform integration
-repo = 'https://github.com/hashivim/vim-terraform'
+# [[custom_plugins]]
+# repo = 'https://github.com/hashivim/vim-terraform'
 
-[[custom_plugins]]
 # BASH IDE -- Write and run BASH-scripts using menus and hotkeys.
+[[custom_plugins]]
 repo = 'https://github.com/vim-scripts/bash-support.vim'
 
-[[custom_plugins]]
 # Syntax highlighting for Bats - Bash Automated Testing System
-repo = 'https://github.com/vim-scripts/bats.vim'
+# [[custom_plugins]]
+# repo = 'https://github.com/vim-scripts/bats.vim'
 
-[[custom_plugins]]
 # Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+[[custom_plugins]]
 repo = 'https://github.com/vim-scripts/taglist.vim'
 
-[[custom_plugins]]
 # Yet another :ascii command
-repo = 'https://github.com/vim-scripts/betterga'
-
 [[custom_plugins]]
-# abolish.vim: Work with several variants of a word at once
-repo = 'https://github.com/tpope/vim-abolish'
+repo = 'https://github.com/vim-scripts/betterga'
+on_func = 'betterga#ascii'
 
+# abolish.vim: Work with several variants of a word at once
 # [[custom_plugins]]
+# repo = 'https://github.com/tpope/vim-abolish'
+
 # sensible.vim: Defaults everyone can agree on
+# [[custom_plugins]]
 # repo = 'https://github.com/tpope/vim-sensible'
 
-[[custom_plugins]]
 # use CTRL-A/CTRL-X to increment dates, times, and more
-repo = 'https://github.com/tpope/vim-speeddating'
+# [[custom_plugins]]
+# repo = 'https://github.com/tpope/vim-speeddating'
 
-[[custom_plugins]]
 # A Git wrapper so awesome, it should be illegal
+[[custom_plugins]]
 repo = 'https://github.com/tpope/vim-fugitive'
 
-# [[custom_plugins]]
 # GitHub extension for fugitive.vim
+# [[custom_plugins]]
 # repo = 'https://github.com/tpope/vim-rhubarb'
 
-[[custom_plugins]]
 #  A Vim plugin for more pleasant editing on commit messages
+[[custom_plugins]]
 repo = 'https://github.com/rhysd/committia.vim'
 
-[[custom_plugins]]
 # Extra syntax and highlight for nerdtree files
 # requires vim-devicons
-repo = 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
+# [[custom_plugins]]
+# repo = 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
 
-[[custom_plugins]]
 # easy work with ArchLinux PKGBUILD
+[[custom_plugins]]
 repo = 'https://github.com/dracorp/vim-pkgbuild'
 
-[[custom_plugins]]
 # 🌵 Viewer & Finder for LSP symbols and tags
+[[custom_plugins]]
 repo = 'https://github.com/liuchengxu/vista.vim'
 
-[[custom_plugins]]
 #  Syntax checking hacks for vim
+[[custom_plugins]]
 repo = 'https://github.com/scrooloose/syntastic'
+on_cmd = ['SyntasticCheck', 'SyntasticInfo']
 
 [[custom_plugins]]
+repo = 'https://github.com/itspriddle/vim-shellcheck'
+on_cmd = ['ShellCheck', 'LShellCheck']
+
 # A git commit browser in Vim
-repo = 'https://github.com/junegunn/gv.vim'
-
 [[custom_plugins]]
+repo = 'https://github.com/junegunn/gv.vim'
+on_cmd = ['GV']
+
 # Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
+[[custom_plugins]]
 repo = 'https://github.com/vim-scripts/DrawIt'
 on_cmd = ['DrawIt']
 
-[[custom_plugins]]
 # vim-snipmate default snippets (Previously snipmate-snippets)
+[[custom_plugins]]
 repo = 'https://github.com/honza/vim-snippets'
 
-[[custom_plugins]]
 # A vim 7.4+ plugin to generate table of contents for Markdown files.
+[[custom_plugins]]
 repo = 'https://github.com/mzlogin/vim-markdown-toc'
+on_cmd = ['GenTocGFM', 'GenTocRedcarpet', 'GenTocGitLab', 'GenTocMarked', 'UpdateToc', 'RemoveToc' ]
 
-[[custom_plugins]]
-# Multiple cursors plugin for vim/neovim
-repo = 'https://github.com/mg979/vim-visual-multi'
-
-[[custom_plugins]] # built-in tools but Callendar is not available
 # A calendar application for Vim
+[[custom_plugins]] # built-in tools but Calendar is not available
 repo = 'https://github.com/itchyny/calendar.vim'
+on_cmd = ['Calendar']
 
-[[custom_plugins]]
-# Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
-repo = 'https://github.com/ryanoasis/vim-devicons'
-
-[[custom_plugins]]
 # Miscellaneous auto-load Vim scripts
-repo = 'https://github.com/xolox/vim-misc'
 [[custom_plugins]]
+repo = 'https://github.com/xolox/vim-misc'
+
 # Automated tag file generation and syntax highlighting of tags in Vim
+[[custom_plugins]]
 repo = 'https://github.com/xolox/vim-easytags'
 
-[[custom_plugins]]
-repo = 'https://github.com/xolox/vim-colorscheme-switcher'
+# [[custom_plugins]]
+# repo = 'https://github.com/xolox/vim-colorscheme-switcher'
 
 [[custom_plugins]]
 repo = 'https://github.com/Donaldttt/fuzzyy'
 
 [[custom_plugins]]
-repo = 'https://github.com/itspriddle/vim-shellcheck'
-
-# [[custom_plugins]]
-# repo = 'https://github.com/vim-scripts/ManPageView'
-
-[[custom_plugins]]
 repo = 'https://github.com/vim-utils/vim-man'
-# Disabled plugins {{{
-# [[custom_plugins]]
-# Polyfill of Neovim's health-check for Vim
-# repo = 'https://github.com/rhysd/vim-healthcheck'
+on_cmd = ['Man', 'Vman']
 
+# [[custom_plugins]]
+# repo = 'https://github.com/chrisbra/csv.vim'
+
+# Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
+[[custom_plugins]]
+repo = 'https://github.com/ryanoasis/vim-devicons'
+
+# Disabled plugins {{{
 # [[custom_plugins]]
 # A solid language pack for Vim
 # repo = 'https://github.com/sheerun/vim-polyglot'
@@ -438,10 +526,6 @@ repo = 'https://github.com/vim-utils/vim-man'
 # [[custom_plugins]]
 # Instant Markdown previews from Vim
 # repo = 'https://github.com/instant-markdown/vim-instant-markdown'
-
-# [[custom_plugins]]
-# A vim plugin making use of vim's conceal feature for additional visual eyecandy.
-# repo = 'https://github.com/khzaw/vim-conceal'
 
 # [[custom_plugins]]
 # Vim plugin that shows the context of the currently visible buffer contents
@@ -480,10 +564,6 @@ repo = 'https://github.com/vim-utils/vim-man'
 # [[custom_plugins]] # built-in edit
 # 🎄 Vim undo tree visualizer
 # repo = 'https://github.com/simnalamburt/vim-mundo'
-
-# [[custom_plugins]] # built-in git
-# A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
-# repo = 'https://github.com/airblade/vim-gitgutter'
 
 # [[custom_plugins]] # built-in incsearch
 # :substitute preview
