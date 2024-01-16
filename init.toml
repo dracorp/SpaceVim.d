@@ -7,21 +7,21 @@
 # automatic_update = true
 # statusline_separator = 'arrow'
 # statusline_iseparator = 'bar'
-# statusline_left = [
-#   'winnr',
-#   'filename',
-#   'major mode',
-#   'minor mode lighters',
-#   'version control info',
-#   'search status'
-# ]
-# statusline_right = [
-#   'fileformat',
-#   'cursorpos',
-#   'percentage',
-#   'whitespace',
-#   'syntax checking'
-# ]
+statusline_left = [
+  'winnr',
+  'filename',
+  'major mode',
+  'minor mode lighters',
+  'version control info',
+  'search status'
+]
+statusline_right = [
+  'fileformat',
+  'cursorpos',
+  'percentage',
+  'whitespace',
+  'syntax checking'
+]
 # right sections of statusline
 # disable 'q' to close current window
 # windows_smartclose = ''
@@ -47,7 +47,6 @@ filetree_direction = 'left'
 guifont = 'AgaveNF-Regular:h15'
 escape_key_binding = ''
 relativenumber = false
-
 
 # options for non-project files/directories
 project_non_root = 'current'
