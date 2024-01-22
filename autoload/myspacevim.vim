@@ -68,7 +68,7 @@ function! myspacevim#before() abort "{{{
         set foldcolumn=0                            " add a fold column
         set foldmethod=marker                       " detect triple-{ style fold marker
         " set foldmarker={{{,}}}
-        set foldlevelstart=1                      " start out with everything unfolded
+        set foldlevelstart=20
         " Don't open folds when search into them
         set foldopen-=search
         " Don't open folds when undo stuff
@@ -186,23 +186,6 @@ function! myspacevim#after() abort "{{{
     " endif
 "" }}}
 
-"" Plugin: nerd-commenter {{{
-    " " Add spaces after comment delimiters by default
-    " let g:NERDSpaceDelims = 1
-    " " Use compact syntax for prettified multi-line comments
-    " let g:NERDCompactSexyComs = 1
-    " " Align line-wise comment delimiters flush left instead of following code indentation
-    " let g:NERDDefaultAlign = 'left'
-    " " Set a language to use its alternate delimiters by default
-    " let g:NERDAltDelims_java = 1
-    " " Allow commenting and inverting empty lines (useful when commenting a region)
-    " let g:NERDCommentEmptyLines = 1
-    " " Enable trimming of trailing whitespace when uncommenting
-    " let g:NERDTrimTrailingWhitespace = 1
-    " " Enable NERDCommenterToggle to check all selected lines is commented or not
-    " let g:NERDToggleCheckAllLines = 1
-"" }}}
-
 "" Plugin: vim-commentery {{{
     augroup vim_commentary
         au!
@@ -293,6 +276,12 @@ function! myspacevim#after() abort "{{{
     " Enable trimming of trailing whitespace when uncommenting
     let g:NERDTrimTrailingWhitespace=1
     let g:NERDCustomDelimiters.brewfile = { 'left': '#','right': '' }
+    " Align line-wise comment delimiters flush left instead of following code indentation
+    " let g:NERDDefaultAlign = 'left'
+    " Set a language to use its alternate delimiters by default
+    " let g:NERDAltDelims_java = 1
+    " Enable NERDCommenterToggle to check all selected lines is commented or not
+    " let g:NERDToggleCheckAllLines = 1
 "" }}}
 
 "" Additional Configs {{{

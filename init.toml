@@ -22,7 +22,6 @@ statusline_right = [
   'whitespace',
   'syntax checking'
 ]
-# right sections of statusline
 # disable 'q' to close current window
 # windows_smartclose = ''
 # in vimcompatible mode, all the differences above will disappear
@@ -37,7 +36,7 @@ enable_guicolors = 1
 # enable_statusline_mode = true
 # enable_tabline_filetype_icon = true
 # default is nerdtree
-# filemanager = 'nerdtree'
+filemanager = 'nerdtree'
 # filemanager = 'vimfiler'
 # works only in nvim
 # filemanager = 'defx'
@@ -82,7 +81,7 @@ autocomplete_method = 'completor' # działa
 # checkers, default neomake
 # lint_engine = 'neomake'
 # lint_engine = 'ale'
-# lint_engine = 'syntastic'
+lint_engine = 'syntastic'
 
 # enable_googlesuggest = 1
 # vim_help_language = 'pl'
@@ -343,7 +342,7 @@ name = 'tools'
 # https://spacevim.org/layers/ui/
 # enabled by default
 name = 'ui'
-enable_cursorword = false
+enable_cursorword = true
 enable_indentline = true
 indentline_char = '⦙'
 conceallevel = 0
@@ -420,7 +419,7 @@ repo = 'https://github.com/vim-scripts/taglist.vim'
 # Yet another :ascii command
 [[custom_plugins]]
 repo = 'https://github.com/vim-scripts/betterga'
-on_func = 'betterga#ascii'
+# on_func = 'betterga#ascii'
 
 # abolish.vim: Work with several variants of a word at once
 # [[custom_plugins]]
@@ -462,7 +461,7 @@ repo = 'https://github.com/liuchengxu/vista.vim'
 #  Syntax checking hacks for vim
 [[custom_plugins]]
 repo = 'https://github.com/scrooloose/syntastic'
-on_cmd = ['SyntasticCheck', 'SyntasticInfo']
+# on_cmd = ['SyntasticCheck', 'SyntasticInfo']
 
 [[custom_plugins]]
 repo = 'https://github.com/itspriddle/vim-shellcheck'
@@ -512,6 +511,17 @@ on_cmd = ['Man', 'Vman']
 
 # [[custom_plugins]]
 # repo = 'https://github.com/chrisbra/csv.vim'
+
+# [[custom_plugins]]
+# repo = 'https://github.com/Yggdroot/indentLine'
+
+# [[custom_plugins]]
+# repo = 'https://github.com/vim-airline/vim-airline'
+# [[custom_plugins]]
+# repo = 'https://github.com/vim-airline/vim-airline-themes'
+
+[[custom_plugins]]
+repo = 'https://github.com/pedrohdz/vim-yaml-folds'
 
 # Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 [[custom_plugins]]

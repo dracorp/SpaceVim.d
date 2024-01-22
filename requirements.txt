@@ -6,3 +6,4 @@ pylint
 coverage
 python-lsp-server
 pynvim
+neovim
