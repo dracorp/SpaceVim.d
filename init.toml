@@ -54,7 +54,7 @@ project_non_root = 'current'
 project_auto_root = false
 
 # Default
-# autocomplete_method = 'asyncomplete' słabo działa
+# autocomplete_method = 'asyncomplete' # słabo działa
 # asyncomplete-buffer.vim
 # asyncomplete-necovim.vim
 # asyncomplete-omni.vim
@@ -62,16 +62,18 @@ project_auto_root = false
 
 # autocomplete_method = 'neocomplete' # nie dziala
 
-# autocomplete_method = 'neocomplcache'  # dziala
+# autocomplete_method = 'neocomplcache'  # dziala ale nie do końca
 # neocomplcache.vim
 
-# autocomplete_method = 'deoplete' # nie dziala
+# autocomplete_method = 'deoplete' # dziala ale nie do końca
 
 # autocomplete_method = 'coc' # dziala
 # coc-neco
 
 # autocomplete_method = 'YouCompleteMe' # nie działa
-autocomplete_method = 'completor' # działa
+
+# autocomplete_method = 'completor' # działa
+# echodoc.vim
 # completor-neosnippet
 # completor.vim
 
@@ -92,9 +94,9 @@ bootstrap_after = 'myspacevim#after'
 #}}}
 
 #{{{ layers
-# [[layers]]
 # https://spacevim.org/layers/autocomplete/
 # enabled by default
+# [[layers]]
 # name = 'autocomplete'
 # auto_completion_return_key_behavior = 'smart'
 # auto_completion_tab_key_behavior = 'smart'
@@ -127,7 +129,6 @@ open_error_list = 0
 # disabled by default
 # [[layers]]
 # name = 'core#statuscolumn'
-# enable = true
 
 # https://spacevim.org/layers/core/statusline/
 # enabled by default
@@ -232,8 +233,9 @@ name = 'git'
 # [[layers]]
 # name = 'github'
 
-# [[layers]]
 # [SPC g 2]
+# [[layers]]
+# enable = true
 # name = 'games'
 
 # https://spacevim.org/layers/gtags/
@@ -245,8 +247,8 @@ auto_update = true
 open_quickfix = 1
 # gtagslabel = 'pygments'
 
-# [[layers]]
-# name = 'incsearch'
+[[layers]]
+name = 'incsearch'
 
 #{{{2 langs
 # vim-dockerfile
@@ -311,6 +313,8 @@ name = 'lang#vim'
 #}}}2
 
 # https://spacevim.org/layers/language-server-protocol/
+# async.vim
+# vim-lsp
 # [[layers]]
 # name = 'lsp'
 
@@ -441,7 +445,7 @@ repo = 'https://github.com/tpope/vim-fugitive'
 # [[custom_plugins]]
 # repo = 'https://github.com/tpope/vim-rhubarb'
 
-#  A Vim plugin for more pleasant editing on commit messages
+# A Vim plugin for more pleasant editing on commit messages
 [[custom_plugins]]
 repo = 'https://github.com/rhysd/committia.vim'
 
@@ -496,8 +500,8 @@ on_cmd = ['Calendar']
 repo = 'https://github.com/xolox/vim-misc'
 
 # Automated tag file generation and syntax highlighting of tags in Vim
-[[custom_plugins]]
-repo = 'https://github.com/xolox/vim-easytags'
+# [[custom_plugins]]
+# repo = 'https://github.com/xolox/vim-easytags'
 
 # [[custom_plugins]]
 # repo = 'https://github.com/xolox/vim-colorscheme-switcher'
@@ -527,6 +531,8 @@ repo = 'https://github.com/pedrohdz/vim-yaml-folds'
 [[custom_plugins]]
 repo = 'https://github.com/ryanoasis/vim-devicons'
 
+#[[custom_plugins]]
+#repo = 'https://github.com/preservim/nerdcommenter'
 # Disabled plugins {{{
 # [[custom_plugins]]
 # A solid language pack for Vim

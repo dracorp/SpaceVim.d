@@ -20,9 +20,7 @@ function! myspacevim#before() abort "{{{
     let $VIM_HOME=$HOME.'/.SpaceVim.d'
 
     if g:MACOS
-        " let g:python3_host_prog = '/opt/homebrew/bin/python3'
         let g:python3_host_prog=substitute(system('which python3'), '\n', '', 'g')
-        " let g:python3_host_prog = '/Users/u537501/.pyenv/versions/3.11.6/bin/python'
     endif
 
     " Add HTML brackets to pair matching
@@ -130,12 +128,6 @@ function! myspacevim#before() abort "{{{
 
     " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
     let g:polyglot_disabled = ['csv', 'jenkins', 'yaml']
-endfunction "}}}
-
-function! myspacevim#after() abort "{{{
-    unmap <
-    unmap >
-    unmap <F2>
 
 "" Plugin: vimwiki {{{
     let g:vimwiki_list = [
@@ -178,6 +170,55 @@ function! myspacevim#after() abort "{{{
             endif
         endif
     " endif
+"" }}}
+
+"" Additional Configs {{{
+  " Configurations for plugins to load into Vim
+    let plugin_configurations=[
+    \ 'functions.vim',
+    \ ]
+    for configuration in plugin_configurations
+        let config_path = join([$VIM_HOME, 'autoload', configuration], '/')
+        if filereadable(config_path)
+            execute 'source ' . config_path
+        endif
+    endfor
+    if filereadable(expand('~/.config/vim/local.vim'))
+        source ~/.config/vim/local.vim
+    endif
+"" }}}
+
+endfunction "}}}
+
+function! myspacevim#after() abort "{{{
+    unmap <
+    unmap >
+    unmap <F2>
+
+"" Plugin: NERD Commenter {{{
+    " Create default mappings
+    let g:NERDCreateDefaultMappings = 1
+    " Comment the whole lines in visual mode
+    let g:NERDCommentWholeLinesInVMode=1
+    " Add space after the left delimiter and before the right delimiter
+    let g:NERDSpaceDelims=1
+    " Use compact syntax for prettified multi-line comments
+    let g:NERDCompactSexyComs=1
+    " Allow commenting and inverting empty lines (useful when commenting a region)
+    let g:NERDCommentEmptyLines=1
+    " Enable trimming of trailing whitespace when uncommenting
+    let g:NERDTrimTrailingWhitespace=1
+    " Add your own custom formats or override the defaults
+    if !exists('NERDCustomDelimiters')
+        let g:NERDCustomDelimiters = {}
+    endif
+    let g:NERDCustomDelimiters.brew = { 'left': '#', 'leftAlt': '#', 'right': '' }
+    " Align line-wise comment delimiters flush left instead of following code indentation
+    let g:NERDDefaultAlign = 'left'
+    " Set a language to use its alternate delimiters by default
+    " let g:NERDAltDelims_java = 1
+    " Enable NERDCommenterToggle to check all selected lines is commented or not
+    " let g:NERDToggleCheckAllLines = 1
 "" }}}
 
 "" Plugin: vim-mundo {{{
@@ -264,42 +305,6 @@ function! myspacevim#after() abort "{{{
   let g:multi_cursor_exit_from_insert_mode=0
 "" }}}
 
-"" Plugin: NERD Commenter {{{
-    " Comment the whole lines in visual mode
-    let g:NERDCommentWholeLinesInVMode=1
-    " Add space after the left delimiter and before the right delimiter
-    let g:NERDSpaceDelims=1
-    " Use compact syntax for prettified multi-line comments
-    let g:NERDCompactSexyComs=1
-    " Allow commenting and inverting empty lines (useful when commenting a region)
-    let g:NERDCommentEmptyLines=1
-    " Enable trimming of trailing whitespace when uncommenting
-    let g:NERDTrimTrailingWhitespace=1
-    let g:NERDCustomDelimiters.brewfile = { 'left': '#','right': '' }
-    " Align line-wise comment delimiters flush left instead of following code indentation
-    " let g:NERDDefaultAlign = 'left'
-    " Set a language to use its alternate delimiters by default
-    " let g:NERDAltDelims_java = 1
-    " Enable NERDCommenterToggle to check all selected lines is commented or not
-    " let g:NERDToggleCheckAllLines = 1
-"" }}}
-
-"" Additional Configs {{{
-  " Configurations for plugins to load into Vim
-  let plugin_configurations=[
-  \ 'functions.vim',
-  \ ]
-    " for configuration in plugin_configurations
-    "     let config_path = join([$VIM_HOME, 'autoload', configuration], '/')
-    "     if filereadable(config_path)
-    "         execute 'source ' . config_path
-    "     endif
-    " endfor
-    " if filereadable(expand('~/.config/vim/local.vim'))
-    "     source ~/.config/vim/local.vim
-    " endif
-"" }}}
-
 "| Recursive | Non-recursive | Unmap    | Modes                            |
 "|-----------|--------------------------|----------------------------------|
 "| :map      | :noremap      | :unmap   | normal, visual, operator-pending |
@@ -316,120 +321,119 @@ function! myspacevim#after() abort "{{{
 " %         actual file, :he expand
 " <leader>  default \
 
-" Leader {{{
+    "" Leader: {{{
+    " Toggle show/hide invisible chars
+    nnoremap <leader>i :set list!<cr>
+    " Split
+    noremap <Leader>h :<C-u>split<CR>
+    noremap <Leader>v :<C-u>vsplit<CR>
 
-" Toggle show/hide invisible chars
-nnoremap <leader>i :set list!<cr>
-" Split
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
-
-" highlight line under cursor, horizontal cursor
-nnoremap <Leader>l :setlocal cursorline!<CR>
-nnoremap <Leader>L :setlocal cursorcolumn!<CR>
+    " highlight line under cursor, horizontal cursor
+    nnoremap <Leader>l :setlocal cursorline!<CR>
+    nnoremap <Leader>L :setlocal cursorcolumn!<CR>
 
 
-" Sort paragraphs
-vnoremap <leader>s !sort -f<CR>gv
-nnoremap <leader>s vip!sort -f<CR><Esc>
+    " Sort paragraphs
+    vnoremap <leader>s !sort -f<CR>gv
+    nnoremap <leader>s vip!sort -f<CR><Esc>
 
-nnoremap <Leader>H :set hlsearch!<CR>
+    nnoremap <Leader>H :set hlsearch!<CR>
 
-" Quote words under cursor
-nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
-nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
-" }}}
+    " Quote words under cursor
+    nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
+    nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
+    " }}}
 
-" change search mapping and don't jump {{{
-" nnoremap * g#``
-" nnoremap # g*``
-" nnoremap g* #``
-" nnoremap g# *``
+    " change search mapping and don't jump {{{
+    " nnoremap * g#``
+    " nnoremap # g*``
+    " nnoremap g* #``
+    " nnoremap g# *``
 
-" nnoremap * g*``
-" nnoremap # g#``
-" nnoremap g* *``
-" nnoremap g# #``
-"}}}
+    " nnoremap * g*``
+    " nnoremap # g#``
+    " nnoremap g* *``
+    " nnoremap g# #``
+    "}}}
 
-" Turn off hlsearch
-nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+    " Turn off hlsearch
+    nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
-" nnoremap n nzzzv
-" nnoremap N Nzzzv
+    " Search mappings: These will make it so that going to the next one in a
+    " search will center on the line it's found in.
+    " nnoremap n nzzzv
+    " nnoremap N Nzzzv
 
-" Function keys
-" refresh syntax highlight
- noremap <silent> <F10> <Esc>:syntax sync fromstart<CR>
-inoremap <silent> <F10> <C-o>:syntax sync fromstart<CR>
+    " Function keys
+    " refresh syntax highlight
+     noremap <silent> <F10> <Esc>:syntax sync fromstart<CR>
+    inoremap <silent> <F10> <C-o>:syntax sync fromstart<CR>
 
-" Permanent 'very magic' mode, see :he pattern
-" search, broken history search!
-" nnoremap / /\v
-" vnoremap / /\v
-" substitute
-" cnoremap %s/ %smagic/
-" cnoremap %s# %smagic#
-" substitute in visual mode
-" cnoremap \>s/ \>smagic/
-" cnoremap \>s# \>smagic#
-" global
-" nnoremap :g/ :g/\v
-" nnoremap :g// :g//
+    " Permanent 'very magic' mode, see :he pattern
+    " search, broken history search!
+    " nnoremap / /\v
+    " vnoremap / /\v
+    " substitute
+    " cnoremap %s/ %smagic/
+    " cnoremap %s# %smagic#
+    " substitute in visual mode
+    " cnoremap \>s/ \>smagic/
+    " cnoremap \>s# \>smagic#
+    " global
+    " nnoremap :g/ :g/\v
+    " nnoremap :g// :g//
 
-" paste mode, where you can paste mass data
-" that won't be autoindented
-" set pastetoggle=<S-F6>                         " deprecated: replaced by vim-bracketed-paste plugin
+    " paste mode, where you can paste mass data
+    " that won't be autoindented
+    " set pastetoggle=<S-F6>                         " deprecated: replaced by vim-bracketed-paste plugin
 
-" open file under cursors in a new window (a vertical split)
-map <c-w>F :vertical wincmd f<CR>
+    " open file under cursors in a new window (a vertical split)
+    map <c-w>F :vertical wincmd f<CR>
 
-" Speed up scrolling of the viewport slightly
-" nnoremap <C-e> 2<C-e>
-" nnoremap <C-y> 2<C-y>
+    " Speed up scrolling of the viewport slightly
+    " nnoremap <C-e> 2<C-e>
+    " nnoremap <C-y> 2<C-y>
 
-" C-U in insert/normal mode, to uppercase the word under cursor
-inoremap <c-u> <esc>viwUea
-nnoremap <c-u> viwUe
-" C-L in insert/normal mode, to lowercase the word under cursor
-inoremap <c-l> <esc>viwuea
-nnoremap <c-l> viwue
+    " C-U in insert/normal mode, to uppercase the word under cursor
+    inoremap <c-u> <esc>viwUea
+    nnoremap <c-u> viwUe
+    " C-L in insert/normal mode, to lowercase the word under cursor
+    inoremap <c-l> <esc>viwuea
+    nnoremap <c-l> viwue
 
-" Use Q for formatting the current paragraph (or visual selection)
-" vnoremap Q gq
-" nnoremap Q gqap
+    " Use Q for formatting the current paragraph (or visual selection)
+    " vnoremap Q gq
+    " nnoremap Q gqap
 
-" search for visually highlighted text
-"vmap // y/<C-R>"<CR>
-"with spec chars
-vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+    " search for visually highlighted text
+    "vmap // y/<C-R>"<CR>
+    "with spec chars
+    vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 
-" Moving cursor to other windows:
-" shift down   : change window focus to lower one (cyclic)
-" shift up     : change window focus to upper one (cyclic)
-" shift left   : change window focus to one on left
-" shift right  : change window focus to one on right
-nnoremap <s-down>   <c-w>w
-nnoremap <s-up>     <c-w>W
-nnoremap <s-left>   <c-w>h
-nnoremap <s-right>  <c-w>l
+    " Moving cursor to other windows:
+    " shift down   : change window focus to lower one (cyclic)
+    " shift up     : change window focus to upper one (cyclic)
+    " shift left   : change window focus to one on left
+    " shift right  : change window focus to one on right
+    nnoremap <s-down>   <c-w>w
+    nnoremap <s-up>     <c-w>W
+    nnoremap <s-left>   <c-w>h
+    nnoremap <s-right>  <c-w>l
 
-" Navigate on a wrapped line as the normal
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up> gk
-vnoremap <Down> gj
-vnoremap <Up> gk
-inoremap <Up> <C-o>gk
-inoremap <Up> <C-o>gk
+    " Navigate on a wrapped line as the normal
+    nnoremap j gj
+    nnoremap k gk
+    vnoremap j gj
+    vnoremap k gk
+    nnoremap <Down> gj
+    nnoremap <Up> gk
+    vnoremap <Down> gj
+    vnoremap <Up> gk
+    inoremap <Up> <C-o>gk
+    inoremap <Up> <C-o>gk
 
-" tab pages
-" nnoremap <c-TAB> :tabnext<cr>
-" nnoremap <c-s-TAB> :tabprev<cr>
+    " tab pages
+    " nnoremap <c-TAB> :tabnext<cr>
+    " nnoremap <c-s-TAB> :tabprev<cr>
 
 endfunction "}}}
