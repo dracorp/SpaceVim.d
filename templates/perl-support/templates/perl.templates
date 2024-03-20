@@ -1,0 +1,95 @@
+== Idioms.subroutine == map:isu, sc:s ==
+sub |?FUNCTION_NAME| {
+    my ( $param<CURSOR> ) = @ARG;
+<SPLIT> return ;
+}
+== Idioms.class_subroutine == map:isc, sc:s ==
+sub |?FUNCTION_NAME| {
+    my $self = shift;
+    my ( $param<CURSOR> ) = @ARG;
+<SPLIT> return ;
+}
+== Comments.file unicode pl == map:cupl, sc:u, start, noindent ==
+#!/usr/bin/env perl
+#===============================================================================
+#       AUTHOR: |AUTHOR| |EMAIL|
+# ORGANIZATION: |ORGANIZATION|
+#         DATE: $Date$
+#     REVISION: $Revision$
+#           ID: $Id$
+#===============================================================================
+
+use v5.14;
+
+use strict;
+use warnings;
+use warnings qw( FATAL utf8 );
+use utf8;
+use open qw( :std :utf8 );
+use Unicode::Normalize qw( NFC );
+use Unicode::Collate;
+use Encode qw( decode );
+
+use Carp;
+use English qw( -no_match_vars );
+
+if ( grep /\P{ASCII}/ => @ARGV ) {
+    @ARGV = map { decode( 'UTF-8', $_ ) } @ARGV;
+}
+# If there is __DATA__,then uncomment next line:
+# binmode( DATA, ':encoding(UTF-8)' );
+
+<CURSOR>
+
+__END__
+== Comments.file description pl == map:chpl, sc:d, start, noindent ==
+#!/usr/bin/env perl
+#===============================================================================
+#       AUTHOR: |AUTHOR| |EMAIL|
+# ORGANIZATION: |ORGANIZATION|
+#         DATE: $Date$
+#     REVISION: $Revision$
+#           ID: $Id$
+#===============================================================================
+
+use strict;
+use warnings;
+use Carp;
+use English qw( -no_match_vars );
+
+<CURSOR>
+__END__
+== Comments.file pod pl == map:cppl, sc:p ==
+=pod
+
+=head1 NAME
+
+|FILENAME| - short_description
+
+=head1 SYNOPSIS
+
+|FILENAME| - short_usage
+
+=head1 DESCRIPTION
+
+long_description
+
+=head1 OPTIONS
+
+=over 4
+
+=item --options
+
+description
+
+=back
+
+=head1 EXAMPLES
+
+=head1 AUTHOR
+
+L<|AUTHOR|mailto:|EMAIL|>
+
+=cut
+
+== ENDTEMPLATE ==

@@ -1,0 +1,5 @@
+joinByString() { #{{{
+    local a=("${@:3}")
+    # shellcheck disable=SC2145
+    printf "%b" "$2${a[@]/#/$1}" "\n"
+} #}}}

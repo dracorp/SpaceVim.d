@@ -1,0 +1,38 @@
+
+OPTIONS_AVAILABLE='ha:b'
+OPTIONS_INPUT=("$@")
+declare -A OPTIONS_ENABLED=(
+    [FOO]=''
+    [FOO_DEFAULT]=''
+)
+
+parse_program_options() { #{{{
+    typeset options retval
+    options=($(getopt $OPTIONS_AVAILABLE "${OPTIONS_INPUT[@]}" 2>/dev/null))
+    retval=$?
+    if (( retval )); then
+        _usage
+    fi
+    set -- "${options[@]}"
+    while [[ "$1" != -- ]]; do
+        case "$1" in
+            -h)
+                _help
+                exit
+                ;;
+            -a)
+                OPTIONS_ENABLED[FOO]=$2
+                shift
+                ;;
+            -b)
+                OPTIONS_ENABLED[BAR]='value'
+                ;;
+            *)
+                _usage 1
+                ;;
+        esac
+        shift
+    done
+    shift # remove --
+    OPTIONS_INPUT=("$@")
+} #}}}

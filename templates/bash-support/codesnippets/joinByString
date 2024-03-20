@@ -1,0 +1,8 @@
+joinByString() { #{{{
+    local separator="$1"
+    shift
+    local first="$1"
+    shift
+    printf "%b" "$first" "${@/#/$separator}" "\n"
+} #}}}
+
